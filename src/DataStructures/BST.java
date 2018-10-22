@@ -1,10 +1,10 @@
-package EstructurasDeDatos;
+package DataStructures;
 
 import interfaces.IBST;
 
 public class BST<K extends Comparable<K>, V> implements IBST<K, V> {
 	
-	private NodeTree<K, V> root;
+	protected NodeTree<K, V> root;
 	
 	public BST() {
 	}
@@ -47,7 +47,7 @@ public class BST<K extends Comparable<K>, V> implements IBST<K, V> {
 
     private NodeTree<K, V> put(NodeTree<K, V> x, K key, V val, NodeTree<K, V> father) {
         if (x == null) {
-        	NodeTree<K, V> temp = new NodeTree<K, V>(key, val);
+        	NodeTree<K, V> temp = new NodeTree<K, V>(key, val, false, 0);
 //			No disponible
 //        	if (x!=father) 
 //        		temp.setFather(father);
@@ -68,25 +68,11 @@ public class BST<K extends Comparable<K>, V> implements IBST<K, V> {
     }
     
     public void deleteMin() {
-        root = deleteMin(root);
-    }
-
-    private NodeTree<K, V> deleteMin(NodeTree<K, V> x) {
-        if (x.getLeftChild() == null) 
-        	return x.getRightChild();
-        x.setLeftChild(deleteMin(x.getLeftChild()));
-        return x;
+        root = root.deleteMin();
     }
     
     public void deleteMax() {
-        root = deleteMax(root);
-    }
-
-    private NodeTree<K, V> deleteMax(NodeTree<K, V> x) {
-        if (x.getRightChild() == null) 
-        	return x.getLeftChild();
-        x.setRightChild(deleteMax(x.getRightChild()));
-        return x;
+        root = root.deleteMax();
     }
     
     public void delete(K key) {
@@ -111,7 +97,8 @@ public class BST<K extends Comparable<K>, V> implements IBST<K, V> {
             
             NodeTree<K, V> t = x;
             x = min(t.getRightChild());
-            x.setRightChild(deleteMin(t.getRightChild()));
+//            x.setRightChild(deleteMin(t.getRightChild()));
+            x.setRightChild(t.getRightChild().deleteMin());
             x.setLeftChild(t.getLeftChild());
         } 
         return x;
@@ -153,4 +140,11 @@ public class BST<K extends Comparable<K>, V> implements IBST<K, V> {
 		return rst;
 	}
 
+	public NodeTree<K, V> getRoot() {
+		return root;
+	}
+
+	public void setRoot(NodeTree<K, V> root) {
+		this.root = root;
+	}
 }

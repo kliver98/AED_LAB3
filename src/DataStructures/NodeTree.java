@@ -1,31 +1,21 @@
-package EstructurasDeDatos;
+package DataStructures;
 
-import java.util.ArrayList;
+public class NodeTree<K, V> {
 
-public class NodeTree <K, V> {
-	
 	private NodeTree<K, V> father;
 	private NodeTree<K, V> leftChild;
 	private NodeTree<K, V> rightChild;
 	private K key;
 	private V value;
-	
-	public NodeTree(K key, V value) {
+	private boolean color;
+    private int height;
+    
+	public NodeTree(K key, V value, boolean color, int height) {
+		super();
 		this.key = key;
 		this.value = value;
-	}
-
-	public ArrayList<NodeTree<K, V>> inOrden() {
-		ArrayList<NodeTree<K, V>> a = new ArrayList<>();
-		return a;
-	}
-
-	public ArrayList<NodeTree<K, V>> postOrden() {
-		return null;
-	}
-
-	public ArrayList<NodeTree<K, V>> preOrden() {
-		return null;
+		this.color = color;
+		this.height = height;
 	}
 	
 	public NodeTree<K, V> min(){
@@ -34,6 +24,13 @@ public class NodeTree <K, V> {
 		else 
 			return this;
 	}
+	
+    public NodeTree<K, V> deleteMin() {
+        if (leftChild == null) 
+        	return rightChild;
+        leftChild = leftChild.deleteMin();
+        return this;
+    }
 
 	public NodeTree<K, V> max(){
 		if (rightChild!=null) 
@@ -42,6 +39,12 @@ public class NodeTree <K, V> {
 			return this;
 	}
 	
+	public NodeTree<K, V> deleteMax() {
+		if (rightChild == null) 
+			return leftChild;
+		rightChild = rightChild.deleteMin();
+		return this;
+	}
 
 	public NodeTree<K, V> getFather() {
 		return father;
@@ -82,5 +85,22 @@ public class NodeTree <K, V> {
 	public void setValue(V value) {
 		this.value = value;
 	}
+
+	public boolean getColor() {
+		return color;
+	}
+
+	public void setColor(boolean color) {
+		this.color = color;
+	}
+
+	public int getHeight() {
+		return height;
+	}
+
+	public void setHeight(int height) {
+		this.height = height;
+	} 
+	
 
 }
