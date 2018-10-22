@@ -14,7 +14,7 @@ public class VentanaPrincipal extends JFrame {
 	 */
 	public static final int WIDTH = 580;
 	public static final int HEIGHT = 650;
-	public static final String TITLE = "Administrador de jugadores de baloncesto - By Kliver & Joel";
+	public static final String TITLE = "Base de datos de jugadores de baloncesto";
 	
 	private PanelInformacionJugador pInfJugador;
 	private PanelOpciones pOpciones;
@@ -33,7 +33,11 @@ public class VentanaPrincipal extends JFrame {
 	}
 	
 	public void agregarPaneles() {
-		
+		pInfJugador = new PanelInformacionJugador();
+		pOpciones = new PanelOpciones();
+		jDialogDatos = new JDialogDatos(this);
+		add(pInfJugador,BorderLayout.CENTER);
+		add(pOpciones,BorderLayout.SOUTH);
 		pack();
 	}
 	
