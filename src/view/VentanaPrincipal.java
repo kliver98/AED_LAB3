@@ -8,10 +8,7 @@ import javax.swing.JFrame;
 
 @SuppressWarnings("serial")
 public class VentanaPrincipal extends JFrame {
-
-	/**
-	 * 
-	 */
+	
 	public static final int WIDTH = 580;
 	public static final int HEIGHT = 650;
 	public static final String TITLE = "Base de datos de jugadores de baloncesto";
