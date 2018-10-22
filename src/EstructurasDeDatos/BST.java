@@ -1,8 +1,8 @@
 package EstructurasDeDatos;
 
-import interfaces.IABB;
+import interfaces.IBST;
 
-public class BST<K extends Comparable<K>, V> implements IABB<K, V> {
+public class BST<K extends Comparable<K>, V> implements IBST<K, V> {
 	
 	private NodeTree<K, V> root;
 	

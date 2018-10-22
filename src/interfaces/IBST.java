@@ -2,7 +2,7 @@ package interfaces;
 
 //import EstructurasDeDatos.NodeTree;
 
-public interface IABB <K extends Comparable<K>,V>{
+public interface IBST <K extends Comparable<K>,V>{
 
 	public void put(K key, V value);
 	public void delete(K key);
