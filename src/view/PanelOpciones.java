@@ -24,6 +24,7 @@ public class PanelOpciones extends JPanel implements ActionListener {
 	private JTextField campoBloqueos;
 	private JButton botonBuscar;
 	private JButton botonCargar;
+	private JDialogLoadFile jDialogLoadFile;
 	
 	public PanelOpciones() {
 		this.setLayout(new GridLayout(2,1));
@@ -40,6 +41,7 @@ public class PanelOpciones extends JPanel implements ActionListener {
 		botonCargar = new JButton(CARGAR);
 		botonBuscar.addActionListener(this);
 		botonCargar.addActionListener(this);
+		jDialogLoadFile = new JDialogLoadFile();
 		TextPrompt tp1 = new TextPrompt("Puntos",campoPuntos);
 		TextPrompt tp2 = new TextPrompt("Rebotes",campoRebotes);
 		TextPrompt tp3 = new TextPrompt("Asistencias",campoAsistencias);
@@ -55,7 +57,7 @@ public class PanelOpciones extends JPanel implements ActionListener {
 	    tp4.changeStyle(Font.PLAIN);
 	    tp5.changeAlpha(0.75f);
 	    tp5.changeStyle(Font.PLAIN);
-	    JLabel principal = new JLabel("*Solo se permite buscar por un campo y recuerde, solo números.*");
+	    JLabel principal = new JLabel("*Solo se permite buscar por un campo y recuerde, solo nï¿½meros.*");
 	    add(principal);
 	    principal.setHorizontalAlignment(SwingConstants.CENTER);
 	    JPanel aux = new JPanel(new GridLayout(1,7));
@@ -75,7 +77,7 @@ public class PanelOpciones extends JPanel implements ActionListener {
 		if (c.equals(BUSCAR)) {
 			System.out.println(BUSCAR);
 		} else if (c.equals(CARGAR)) {
-			System.out.println(CARGAR);
+			jDialogLoadFile.setVisible(true);
 		}
 	}
 	
