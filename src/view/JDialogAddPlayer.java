@@ -15,7 +15,7 @@ public class JDialogAddPlayer extends JDialog implements ActionListener {
 	
 	
 	public static final String ADD = "add";
-	public static final String CANCEL = "canel";
+	public static final String CANCEL = "cancel";
 	
 	private JLabel lbName;
 	private JLabel lbAge;

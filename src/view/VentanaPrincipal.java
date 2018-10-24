@@ -29,7 +29,7 @@ public class VentanaPrincipal extends JFrame {
 	}
 	
 	public void agregarPaneles() {
-		pInfJugador = new PanelInformacionJugador(this);
+		pInfJugador = new PanelInformacionJugador();
 		pOpciones = new PanelOpciones();
 		jDialogDatos = new JDialogDatos(this);
 		add(pInfJugador,BorderLayout.CENTER);

@@ -1,8 +1,5 @@
 package view;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -17,13 +14,13 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class JDialogLoadFile extends JDialog implements ActionListener {
 	
-	public static final String ACEPT = "acept";
+	public static final String ACCEPT = "accept";
 	
 	public static final String LOAD = "load";
 	public static final String ADD_PLAYER = "add";
 	
 	private JLabel lbLoad;
-	private JButton btAcept;
+	private JButton btAccept;
 	private JButton btLoad;
 	private JButton btAddPlayer;
 	private JDialogAddPlayer jDialogAddPlayer;
@@ -41,9 +38,9 @@ public class JDialogLoadFile extends JDialog implements ActionListener {
 		
 		
 		lbLoad  = new JLabel("Add Player");
-		btAcept = new JButton("Acept");
-		btAcept.addActionListener(this);
-		btAcept.setActionCommand(ACEPT);
+		btAccept = new JButton("Accept");
+		btAccept.addActionListener(this);
+		btAccept.setActionCommand(ACCEPT);
 		btLoad = new JButton("Load players");
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		btLoad.addActionListener(this);
@@ -54,11 +51,11 @@ public class JDialogLoadFile extends JDialog implements ActionListener {
 		setLayout(null);
 		lbLoad.setBounds(176,10, 70,70);
 		btLoad.setBounds(158, 60, 100, 40);
-		btAcept.setBounds(158, 100, 100, 40);
+		btAccept.setBounds(158, 100, 100, 40);
 		btAddPlayer.setBounds(158, 140, 100, 40);
 		add(lbLoad);
 		add(btLoad);
-		add(btAcept);
+		add(btAccept);
 		add(btAddPlayer);
 		
 		
@@ -68,7 +65,7 @@ public class JDialogLoadFile extends JDialog implements ActionListener {
 	
 	public void loadFile() {
 		JFileChooser file = new JFileChooser();
-		FileNameExtensionFilter  fileFilter = new FileNameExtensionFilter("csv", "csv");
+		FileNameExtensionFilter  fileFilter = new FileNameExtensionFilter(".csv", "csv");
 		file.setFileFilter(fileFilter);
 		int option = file.showOpenDialog(this);
 			if(option == file.APPROVE_OPTION ) {
@@ -81,7 +78,7 @@ public class JDialogLoadFile extends JDialog implements ActionListener {
 		String comand = e.getActionCommand();
 			if (comand.equals(LOAD)) {
 				loadFile();
-			}else if (comand.equals(ACEPT)) {
+			}else if (comand.equals(ACCEPT)) {
 				this.dispose();
 			}else if (comand.equals(ADD_PLAYER)) {
 				jDialogAddPlayer.setVisible(true);
