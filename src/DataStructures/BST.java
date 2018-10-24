@@ -1,10 +1,11 @@
 package DataStructures;
 
+import nodeTrees.NodeBST;
 import interfaces.IBST;
 
 public class BST<K extends Comparable<K>, V> implements IBST<K, V> {
 	
-	protected NodeTree<K, V> root;
+	protected NodeBST<K, V> root;
 	
 	public BST() {
 	}
@@ -17,7 +18,7 @@ public class BST<K extends Comparable<K>, V> implements IBST<K, V> {
         return height(root);
     }
     
-    private int height(NodeTree<K, V> x) {
+    private int height(NodeBST<K, V> x) {
         if (x == null) 
         	return -1;
         return 1 + Math.max(height(x.getLeftChild()), height(x.getRightChild()));
@@ -27,7 +28,7 @@ public class BST<K extends Comparable<K>, V> implements IBST<K, V> {
         return get(root, key);
     }
 
-    private V get(NodeTree<K, V> x, K key) {
+    private V get(NodeBST<K, V> x, K key) {
         if (x == null) 
         	return null;
         int cmp = key.compareTo(x.getKey());
@@ -45,9 +46,9 @@ public class BST<K extends Comparable<K>, V> implements IBST<K, V> {
         root = put(root, key, val, root);
     }
 
-    private NodeTree<K, V> put(NodeTree<K, V> x, K key, V val, NodeTree<K, V> father) {
+    private NodeBST<K, V> put(NodeBST<K, V> x, K key, V val, NodeBST<K, V> father) {
         if (x == null) {
-        	NodeTree<K, V> temp = new NodeTree<K, V>(key, val, false, 0);
+        	NodeBST<K, V> temp = new NodeBST<K, V>(key, val);
 //			No disponible
 //        	if (x!=father) 
 //        		temp.setFather(father);
@@ -79,7 +80,7 @@ public class BST<K extends Comparable<K>, V> implements IBST<K, V> {
         root = delete(root, key);
     }
 
-    private NodeTree<K, V> delete(NodeTree<K, V> x, K key) {
+    private NodeBST<K, V> delete(NodeBST<K, V> x, K key) {
         if (x == null) 
         	return null;
 
@@ -95,7 +96,7 @@ public class BST<K extends Comparable<K>, V> implements IBST<K, V> {
             if (x.getLeftChild()  == null) 
             	return x.getRightChild();
             
-            NodeTree<K, V> t = x;
+            NodeBST<K, V> t = x;
             x = min(t.getRightChild());
 //            x.setRightChild(deleteMin(t.getRightChild()));
             x.setRightChild(t.getRightChild().deleteMin());
@@ -108,7 +109,7 @@ public class BST<K extends Comparable<K>, V> implements IBST<K, V> {
         return min(root).getKey();
     } 
 
-    private NodeTree<K, V> min(NodeTree<K, V> x) { 
+    private NodeBST<K, V> min(NodeBST<K, V> x) { 
     	return x.min();
     } 
    
@@ -116,15 +117,15 @@ public class BST<K extends Comparable<K>, V> implements IBST<K, V> {
         return max(root).getKey();
     } 
 
-    private NodeTree<K, V> max(NodeTree<K, V> x) {
+    private NodeBST<K, V> max(NodeBST<K, V> x) {
     	return x.max();
     } 
 	
-	public NodeTree<K, V> searchNode(K key){
-		NodeTree<K, V> rst = null;
+	public NodeBST<K, V> searchNode(K key){
+		NodeBST<K, V> rst = null;
 		
 		if (root != null) {
-			NodeTree<K, V> temp = root;
+			NodeBST<K, V> temp = root;
 			boolean st = true;
 			while(temp != null && st) {
 				if (temp.getKey().compareTo(key)==0) {
@@ -140,11 +141,11 @@ public class BST<K extends Comparable<K>, V> implements IBST<K, V> {
 		return rst;
 	}
 
-	public NodeTree<K, V> getRoot() {
+	public NodeBST<K, V> getRoot() {
 		return root;
 	}
 
-	public void setRoot(NodeTree<K, V> root) {
+	public void setRoot(NodeBST<K, V> root) {
 		this.root = root;
 	}
 }

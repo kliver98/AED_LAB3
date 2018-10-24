@@ -1,18 +1,36 @@
 package DataStructures;
 
+import nodeTrees.*;
+
 public class AVLTreeST<K extends Comparable<K>, V> extends BST<K, V> {
 
+    private NodeAVLBST<K, V> root;
+	
 	public AVLTreeST() {
 	}
+	
+	public boolean isEmpty() {
+		return root == null;
+	}
+	
+    public int height() {
+        return heightG(root);
+    }
+    
+    private int heightG(NodeAVLBST<K, V> x) {
+        if (x == null) 
+        	return -1;
+        return 1 + Math.max(height(x.getLeftChild()), height(x.getRightChild()));
+    }
 	
 	@Override
     public void put(K key, V val) {
         root = put(root, key, val);
     }
 
-    private NodeTree<K, V> put(NodeTree<K, V> x, K key, V val) {
+    private NodeAVLBST<K, V> put(NodeAVLBST<K, V> x, K key, V val) {
         if (x == null) 
-        	return new NodeTree<K, V>(key, val, false, 0);
+        	return new NodeAVLBST<K, V>(key, val, 0);
         int cmp = key.compareTo(x.getKey());
         if (cmp < 0) 
             x.setLeftChild(put(x.getLeftChild(), key, val));
@@ -27,13 +45,13 @@ public class AVLTreeST<K extends Comparable<K>, V> extends BST<K, V> {
         return balance(x);
     }
     
-    private int height(NodeTree<K, V> x) {
+    private int height(NodeAVLBST<K, V> x) {
         if (x == null) 
         	return -1;
         return x.getHeight();
     }
     
-    private NodeTree<K, V> balance(NodeTree<K, V> x) {
+    private NodeAVLBST<K, V> balance(NodeAVLBST<K, V> x) {
         if (balanceFactor(x) < -1) {
             if (balanceFactor(x.getRightChild()) > 0) {
                 x.setRightChild(rotateRight(x.getRightChild()));
@@ -49,12 +67,12 @@ public class AVLTreeST<K extends Comparable<K>, V> extends BST<K, V> {
         return x;
     }
     
-    private int balanceFactor(NodeTree<K, V> x) {
+    private int balanceFactor(NodeAVLBST<K, V> x) {
         return height(x.getLeftChild()) - height(x.getRightChild());
     }
     
-    private NodeTree<K, V> rotateRight(NodeTree<K, V> x) {
-    	NodeTree<K, V> y = x.getLeftChild();
+    private NodeAVLBST<K, V> rotateRight(NodeAVLBST<K, V> x) {
+    	NodeAVLBST<K, V> y = x.getLeftChild();
         x.setLeftChild(y.getRightChild());
         y.setRightChild(x);
         x.setHeight(1 + Math.max(height(x.getLeftChild()), height(x.getRightChild())));
@@ -62,8 +80,8 @@ public class AVLTreeST<K extends Comparable<K>, V> extends BST<K, V> {
         return y;
     }
 
-    private NodeTree<K, V> rotateLeft(NodeTree<K, V> x) {
-    	NodeTree<K, V> y = x.getRightChild();
+    private NodeAVLBST<K, V> rotateLeft(NodeAVLBST<K, V> x) {
+    	NodeAVLBST<K, V> y = x.getRightChild();
     	x.setRightChild(y.getLeftChild());
     	y.setLeftChild(x);
     	x.setHeight(1 + Math.max(height(x.getLeftChild()), height(x.getRightChild())));
@@ -75,7 +93,7 @@ public class AVLTreeST<K extends Comparable<K>, V> extends BST<K, V> {
         root = delete(root, key);
     }
 
-    private NodeTree<K, V> delete(NodeTree<K, V> x, K key) {
+    private NodeAVLBST<K, V> delete(NodeAVLBST<K, V> x, K key) {
         int cmp = key.compareTo(x.getKey());
         if (cmp < 0) 
             x.setLeftChild(delete(x.getLeftChild(), key));
@@ -91,7 +109,7 @@ public class AVLTreeST<K extends Comparable<K>, V> extends BST<K, V> {
                 return x.getLeftChild();
             
             else {
-                NodeTree<K, V> y = x;
+                NodeAVLBST<K, V> y = x;
                 x = y.getRightChild().min();
                 x.setRightChild(deleteMin(y.getRightChild()));
                 x.setLeftChild(y.getLeftChild());
@@ -105,7 +123,7 @@ public class AVLTreeST<K extends Comparable<K>, V> extends BST<K, V> {
         root = deleteMin(root);
     }
 
-    private NodeTree<K, V> deleteMin(NodeTree<K, V> x) {
+    private NodeAVLBST<K, V> deleteMin(NodeAVLBST<K, V> x) {
         if (x.getLeftChild() == null) 
         	return x.getRightChild();
         x.setLeftChild(deleteMin(x.getLeftChild()));
@@ -117,7 +135,7 @@ public class AVLTreeST<K extends Comparable<K>, V> extends BST<K, V> {
         root = deleteMax(root);
     }
 
-    private NodeTree<K, V> deleteMax(NodeTree<K, V> x) {
+    private NodeAVLBST<K, V> deleteMax(NodeAVLBST<K, V> x) {
         if (x.getRightChild() == null) 
         	return x.getLeftChild();
         x.setRightChild(deleteMax(x.getRightChild()));
@@ -129,7 +147,7 @@ public class AVLTreeST<K extends Comparable<K>, V> extends BST<K, V> {
         return isAVL(root);
     }
 
-    private boolean isAVL(NodeTree<K, V> x) {
+    private boolean isAVL(NodeAVLBST<K, V> x) {
         if (x == null) 
         	return true;
         int bf = balanceFactor(x);

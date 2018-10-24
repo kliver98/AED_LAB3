@@ -1,18 +1,35 @@
 package DataStructures;
 
+import nodeTrees.*;
+
 public class RedBlackBST<K extends Comparable<K>, V> extends BST<K, V>{
 	
     public static final boolean RED   = true;
     public static final boolean BLACK = false;
-	
+    private NodeRedBlackBST<K, V> root;
+    
+    
 	public RedBlackBST() {
 	}
 	
-    private boolean isRed(NodeTree<K, V> x) {
+	public boolean isEmpty() {
+		return root == null;
+	}
+	
+    public int height() {
+        return height(root);
+    }
+    
+    private int height(NodeRedBlackBST<K, V> x) {
+        if (x == null) 
+        	return -1;
+        return 1 + Math.max(height(x.getLeftChild()), height(x.getRightChild()));
+    }
+	
+    private boolean isRed(NodeRedBlackBST<K, V> x) {
         if (x == null) 
         	return false;
         return x.getColor() == RED;
-        
     }
     
     @Override
@@ -21,9 +38,9 @@ public class RedBlackBST<K extends Comparable<K>, V> extends BST<K, V>{
         root.setColor(BLACK);;
     }
     
-    private NodeTree<K, V> put(NodeTree<K, V> h, K key, V val) { 
+    private NodeRedBlackBST<K, V> put(NodeRedBlackBST<K, V> h, K key, V val) { 
         if (h == null) 
-        	return new NodeTree<K, V>(key, val, RED,0);
+        	return new NodeRedBlackBST<K, V>(key, val, RED);
 
         int cmp = key.compareTo(h.getKey());
         if (cmp < 0) 
@@ -56,7 +73,7 @@ public class RedBlackBST<K extends Comparable<K>, V> extends BST<K, V>{
     }
 
     // delete the key-value pair with the minimum key rooted at h
-    private NodeTree<K, V> deleteMin(NodeTree<K, V> h) { 
+    private NodeRedBlackBST<K, V> deleteMin(NodeRedBlackBST<K, V> h) { 
         if (h.getLeftChild() == null)
             return null;
 
@@ -78,7 +95,7 @@ public class RedBlackBST<K extends Comparable<K>, V> extends BST<K, V>{
     }
 
     // delete the key-value pair with the maximum key rooted at h
-    private NodeTree<K, V> deleteMax(NodeTree<K, V> h) { 
+    private NodeRedBlackBST<K, V> deleteMax(NodeRedBlackBST<K, V> h) { 
         if (isRed(h.getLeftChild()))
             h = rotateRight(h);
 
@@ -105,7 +122,7 @@ public class RedBlackBST<K extends Comparable<K>, V> extends BST<K, V>{
     }
 
     // delete the key-value pair with the given key rooted at h
-    private NodeTree<K, V> delete(NodeTree<K, V> h, K key) { 
+    private NodeRedBlackBST<K, V> delete(NodeRedBlackBST<K, V> h, K key) { 
         if (key.compareTo(h.getKey()) < 0)  {
             if (!isRed(h.getLeftChild()) && !isRed(h.getLeftChild().getLeftChild()))
                 h = moveRedLeft(h);
@@ -122,7 +139,7 @@ public class RedBlackBST<K extends Comparable<K>, V> extends BST<K, V>{
                 h = moveRedRight(h);
            
             if (key.compareTo(h.getKey()) == 0) {
-            	NodeTree<K, V> x = h.getRightChild().min();
+            	NodeRedBlackBST<K, V> x = h.getRightChild().min();
                 h.setKey(x.getKey());
                 h.setValue(x.getValue());
                 // h.val = get(h.right, min(h.right).key);
@@ -139,8 +156,8 @@ public class RedBlackBST<K extends Comparable<K>, V> extends BST<K, V>{
      ***************************************************************************/
     
     // make a left-leaning link lean to the right
-    private NodeTree<K, V> rotateRight(NodeTree<K, V> h) {
-        NodeTree<K, V> x = h.getLeftChild();
+    private NodeRedBlackBST<K, V> rotateRight(NodeRedBlackBST<K, V> h) {
+    	NodeRedBlackBST<K, V> x = h.getLeftChild();
         h.setLeftChild(x.getRightChild());
         x.setRightChild(h);
         x.setColor(x.getRightChild().getColor());
@@ -149,8 +166,8 @@ public class RedBlackBST<K extends Comparable<K>, V> extends BST<K, V>{
     }
     
     // make a right-leaning link lean to the left
-    private NodeTree<K, V> rotateLeft(NodeTree<K, V> h) {
-    	NodeTree<K, V> x = h.getRightChild();
+    private NodeRedBlackBST<K, V> rotateLeft(NodeRedBlackBST<K, V> h) {
+    	NodeRedBlackBST<K, V> x = h.getRightChild();
     	h.setRightChild(x.getLeftChild());
     	x.setLeftChild(h);
     	x.setColor(x.getLeftChild().getColor());
@@ -159,7 +176,7 @@ public class RedBlackBST<K extends Comparable<K>, V> extends BST<K, V>{
     }
     
     // flip the colors of a node and its two children
-    private void flipColors(NodeTree<K, V> h) {
+    private void flipColors(NodeRedBlackBST<K, V> h) {
         h.setColor(!h.getColor());;
         h.getLeftChild().setColor(!h.getLeftChild().getColor());
         h.getRightChild().setColor(!h.getRightChild().getColor());
@@ -167,7 +184,7 @@ public class RedBlackBST<K extends Comparable<K>, V> extends BST<K, V>{
     
     // Assuming that h is red and both h.left and h.left.left
     // are black, make h.left or one of its children red.
-    private NodeTree<K, V> moveRedLeft(NodeTree<K, V> h) {
+    private NodeRedBlackBST<K, V> moveRedLeft(NodeRedBlackBST<K, V> h) {
         flipColors(h);
         if (isRed(h.getRightChild().getLeftChild())) { 
             h.setRightChild(rotateRight(h.getRightChild()));
@@ -179,7 +196,7 @@ public class RedBlackBST<K extends Comparable<K>, V> extends BST<K, V>{
     
     // Assuming that h is red and both h.right and h.right.left
     // are black, make h.right or one of its children red.
-    private NodeTree<K, V> moveRedRight(NodeTree<K, V> h) {
+    private NodeRedBlackBST<K, V> moveRedRight(NodeRedBlackBST<K, V> h) {
         flipColors(h);
         if (isRed(h.getLeftChild().getLeftChild())) { 
             h = rotateRight(h);
@@ -189,7 +206,7 @@ public class RedBlackBST<K extends Comparable<K>, V> extends BST<K, V>{
     }
 
     // restore red-black tree invariant
-    private NodeTree<K, V> balance(NodeTree<K, V> h) {
+    private NodeRedBlackBST<K, V> balance(NodeRedBlackBST<K, V> h) {
         if (isRed(h.getRightChild()))
         	h = rotateLeft(h);
         if (isRed(h.getLeftChild()) && isRed(h.getLeftChild().getLeftChild())) 
@@ -207,7 +224,7 @@ public class RedBlackBST<K extends Comparable<K>, V> extends BST<K, V>{
     // do all paths from root to leaf have same number of black edges?
     public boolean isBalanced() { 
         int black = 0;     // number of black links on path from root to min
-        NodeTree<K, V> x = root;
+        NodeRedBlackBST<K, V> x = root;
         while (x != null) {
             if (!isRed(x)) black++;
             x = x.getLeftChild();
@@ -216,11 +233,19 @@ public class RedBlackBST<K extends Comparable<K>, V> extends BST<K, V>{
     }
 
     // does every path from the root to a leaf have the given number of black links?
-    private boolean isBalanced(NodeTree<K, V> x, int black) {
+    private boolean isBalanced(NodeRedBlackBST<K, V> x, int black) {
         if (x == null) 
         	return black == 0;
         if (!isRed(x)) 
         	black--;
         return isBalanced(x.getLeftChild(), black) && isBalanced(x.getRightChild(), black);
-    } 
+    }
+
+	public NodeRedBlackBST<K, V> getRoot() {
+		return root;
+	}
+
+	public void setRoot(NodeRedBlackBST<K, V> root) {
+		this.root = root;
+	} 
 }
