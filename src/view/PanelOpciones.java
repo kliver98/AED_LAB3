@@ -57,7 +57,7 @@ public class PanelOpciones extends JPanel implements ActionListener {
 	    tp4.changeStyle(Font.PLAIN);
 	    tp5.changeAlpha(0.75f);
 	    tp5.changeStyle(Font.PLAIN);
-	    JLabel principal = new JLabel("*Solo se permite buscar por un campo y recuerde, solo nï¿½meros.*");
+	    JLabel principal = new JLabel("*Solo se permite buscar por un (1) campo y recuerde, solo números.*");
 	    add(principal);
 	    principal.setHorizontalAlignment(SwingConstants.CENTER);
 	    JPanel aux = new JPanel(new GridLayout(1,7));
