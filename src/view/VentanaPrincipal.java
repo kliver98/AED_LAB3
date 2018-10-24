@@ -2,21 +2,29 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+
+import model.FBA;
 
 @SuppressWarnings("serial")
 public class VentanaPrincipal extends JFrame {
 	
-	public static final int WIDTH = 620;
+	public static final int WIDTH = 580;
 	public static final int HEIGHT = 650;
 	public static final String TITLE = "Base de datos de jugadores de baloncesto";
 	
 	private PanelInformacionJugador pInfJugador;
 	private PanelOpciones pOpciones;
 	private JDialogDatos jDialogDatos;
+	private FBA fBA;
 	
 	public VentanaPrincipal() {
+		
+		fBA = new FBA();
 		this.setLayout(new BorderLayout());
 		Dimension dm = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setPreferredSize(new Dimension(WIDTH,HEIGHT));
@@ -35,6 +43,10 @@ public class VentanaPrincipal extends JFrame {
 		add(pInfJugador,BorderLayout.CENTER);
 		add(pOpciones,BorderLayout.SOUTH);
 		pack();
+	}
+	
+	public void addPlayer(String name, int age, String team, int rointsPerGame, int reboundsPerGame, int AssistsPerGame, int robberiesByGames, int blockingByGames ) {
+		
 	}
 	
 	@SuppressWarnings("unused")
