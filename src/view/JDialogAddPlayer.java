@@ -39,11 +39,8 @@ public class JDialogAddPlayer extends JDialog implements ActionListener {
 	
 	private JButton btAdd;
 	private JButton btCancel;
-	
-	
-	private VentanaPrincipal principal;
-	public JDialogAddPlayer(VentanaPrincipal c) {
-		principal = c;
+	public JDialogAddPlayer() {
+		
 		
 		setSize(300,350);
 		setResizable(false);
@@ -99,15 +96,6 @@ public class JDialogAddPlayer extends JDialog implements ActionListener {
 	}
 	
 	public void addPlayer() {
-		int age = Integer.parseInt(txtAge.getText());
-		int pointsPerGame  = Integer.parseInt(txtRointsPerGame.getText());
-		int reboundsPerGame = Integer.parseInt(txtReboundsPerGame.getText());
-		int AssistsPerGame = Integer.parseInt(txtAssistsPerGame.getText());
-		int robberiesByGames =Integer.parseInt(txtRobberiesByGames.getText());
-		int blockingByGames =Integer.parseInt(txtBlockingByGames.getText());
-		principal.addPlayerAVLBst(txtName.getText(), age, txtTeam.getText(), pointsPerGame, reboundsPerGame, AssistsPerGame, robberiesByGames, blockingByGames);
-		principal.addPlayerBST(txtName.getText(), age, txtTeam.getText(), pointsPerGame, reboundsPerGame, AssistsPerGame, robberiesByGames, blockingByGames);
-		principal.addPlayerRedBlackBST(txtName.getText(), age, txtTeam.getText(), pointsPerGame, reboundsPerGame, AssistsPerGame, robberiesByGames, blockingByGames);
 		
 	}
 	@Override
@@ -116,7 +104,7 @@ public class JDialogAddPlayer extends JDialog implements ActionListener {
 			if(comand.equals(ADD)) {
 				System.out.println("Player added");
 			}else if (comand.equals(CANCEL)) {
-				this.dispose();
+				System.out.println("Cancel");
 			}
 		
 	}

@@ -5,8 +5,6 @@ public class NodeAVLBST<K, V> extends NodeBST<K, V>{
 	private NodeAVLBST<K, V> father;
 	private NodeAVLBST<K, V> leftChild;
 	private NodeAVLBST<K, V> rightChild;
-	private K key;
-	private V value;
     private int height;
 	
 	
@@ -37,22 +35,6 @@ public class NodeAVLBST<K, V> extends NodeBST<K, V>{
 
 	public void setRightChild(NodeAVLBST<K, V> rightChild) {
 		this.rightChild = rightChild;
-	}
-
-	public K getKey() {
-		return key;
-	}
-
-	public void setKey(K key) {
-		this.key = key;
-	}
-
-	public V getValue() {
-		return value;
-	}
-
-	public void setValue(V value) {
-		this.value = value;
 	}
 
 	public int getHeight() {

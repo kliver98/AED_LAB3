@@ -5,8 +5,6 @@ public class NodeRedBlackBST<K, V> extends NodeBST<K, V>{
 	private NodeRedBlackBST<K, V> father;
 	private NodeRedBlackBST<K, V> leftChild;
 	private NodeRedBlackBST<K, V> rightChild;
-	private K key;
-	private V value;
 	private boolean color;
 
 	public NodeRedBlackBST(K key, V value, boolean color) {
@@ -46,22 +44,6 @@ public class NodeRedBlackBST<K, V> extends NodeBST<K, V>{
 		this.rightChild = rightChild;
 	}
 
-	public K getKey() {
-		return key;
-	}
-
-	public void setKey(K key) {
-		this.key = key;
-	}
-
-	public V getValue() {
-		return value;
-	}
-
-	public void setValue(V value) {
-		this.value = value;
-	}
-	
 	public NodeRedBlackBST<K, V> min(){
 		if (leftChild!=null) 
 			return leftChild.min();
