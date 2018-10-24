@@ -1,7 +1,7 @@
 package DataStructures;
 
-import nodeTrees.NodeBST;
-import interfaces.IBST;
+import nodeTrees.*;
+import interfaces.*;
 
 public class BST<K extends Comparable<K>, V> implements IBST<K, V> {
 	

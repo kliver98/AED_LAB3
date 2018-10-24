@@ -17,6 +17,24 @@ public class AVLTreeST<K extends Comparable<K>, V> extends BST<K, V> {
         return heightG(root);
     }
     
+    public V get(K key) {
+        return get(root, key);
+    }
+
+    private V get(NodeAVLBST<K, V> x, K key) {
+        if (x == null) 
+        	return null;
+        int cmp = key.compareTo(x.getKey());
+        if (cmp < 0) 
+        	return get(x.getLeftChild(), key);
+        
+        else if (cmp > 0) 
+        	return get(x.getRightChild(), key);
+        
+        else
+        	return x.getValue();
+    }
+    
     private int heightG(NodeAVLBST<K, V> x) {
         if (x == null) 
         	return -1;

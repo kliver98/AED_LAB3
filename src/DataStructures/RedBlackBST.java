@@ -16,6 +16,24 @@ public class RedBlackBST<K extends Comparable<K>, V> extends BST<K, V>{
 		return root == null;
 	}
 	
+    public V get(K key) {
+        return get(root, key);
+    }
+
+    private V get(NodeRedBlackBST<K, V> x, K key) {
+        if (x == null) 
+        	return null;
+        int cmp = key.compareTo(x.getKey());
+        if (cmp < 0) 
+        	return get(x.getLeftChild(), key);
+        
+        else if (cmp > 0) 
+        	return get(x.getRightChild(), key);
+        
+        else
+        	return x.getValue();
+    }
+	
     public int height() {
         return height(root);
     }
