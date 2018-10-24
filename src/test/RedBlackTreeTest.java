@@ -25,7 +25,7 @@ class RedBlackTreeTest extends TestCase {
 			redBlackTree.put(player.getName(), player);
 			boolean result = false;
 			boolean resultExpected = redBlackTree.isEmpty();
-			assertTrue(resultExpected  = result);
+			assertTrue(resultExpected  == result);
 			
 	}
 	
@@ -47,6 +47,23 @@ class RedBlackTreeTest extends TestCase {
 		Player playerExpected = null;
 		Player playerResult = redBlackTree.get("c");
 		assertTrue(playerResult == playerExpected);
+		
+	}
+	@Test
+	public void searhTest() {
+		
+		stageOne();
+		Player [] arrayPlayers = new Player [12]; 
+		
+		String [] names = new String []{"a", "b" ,"c", "d", "e", "f", "g", "h", "i", "j", "k ", "l"};
+			for (int i = 0; i < arrayPlayers.length; i++) {
+				redBlackTree.put(names[i], new Player(names[i], 2,"x", 1,2,3,4,5));
+			}
+		Player toAdd = new Player("z", 2,"x", 1,2,3,4,5);
+		redBlackTree.put(toAdd.getName(), toAdd);
+		Player playerExpected = toAdd;
+		Player playerResult = redBlackTree.get("c");
+		assertTrue(playerExpected == playerResult);
 		
 	}
 	
