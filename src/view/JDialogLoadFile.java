@@ -24,11 +24,13 @@ public class JDialogLoadFile extends JDialog implements ActionListener {
 	private JButton btLoad;
 	private JButton btAddPlayer;
 	private JDialogAddPlayer jDialogAddPlayer;
+	private VentanaPrincipal principal;
 	
 	
-	public JDialogLoadFile() {
+	public JDialogLoadFile(VentanaPrincipal c) {
 		
-		jDialogAddPlayer = new JDialogAddPlayer();
+		principal = c;
+		jDialogAddPlayer = new JDialogAddPlayer(c);
 		setLayout(null);
 		setVisible(false);
 		setSize(400, 230);

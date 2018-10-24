@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import model.FBA;
+import model.Player;
 
 @SuppressWarnings("serial")
 public class VentanaPrincipal extends JFrame {
@@ -38,16 +39,24 @@ public class VentanaPrincipal extends JFrame {
 	
 	public void agregarPaneles() {
 		pInfJugador = new PanelInformacionJugador();
-		pOpciones = new PanelOpciones();
+		pOpciones = new PanelOpciones(this);
 		jDialogDatos = new JDialogDatos(this);
 		add(pInfJugador,BorderLayout.CENTER);
 		add(pOpciones,BorderLayout.SOUTH);
 		pack();
 	}
 	
-	public void addPlayer(String name, int age, String team, int rointsPerGame, int reboundsPerGame, int AssistsPerGame, int robberiesByGames, int blockingByGames ) {
-		
+	public void addPlayerRedBlackBST(String name, int age, String team, int rointsPerGame, int reboundsPerGame, int AssistsPerGame, int robberiesByGames, int blockingByGames ) {
+		fBA.getPlayersRedBlackTree().put(name, new Player(name, age, team, rointsPerGame, reboundsPerGame, AssistsPerGame, robberiesByGames, blockingByGames));
 	}
+	public void addPlayerAVLBst(String name, int age, String team, int rointsPerGame, int reboundsPerGame, int AssistsPerGame, int robberiesByGames, int blockingByGames ) {
+		fBA.getPlayersAVlTree().put(name,new Player(name, age, team, rointsPerGame, reboundsPerGame, AssistsPerGame, robberiesByGames, blockingByGames));
+	}
+	
+	public void addPlayerBST(String name, int age, String team, int rointsPerGame, int reboundsPerGame, int AssistsPerGame, int robberiesByGames, int blockingByGames ) {
+		fBA.getPlayersAVlTree().put(name,new Player(name, age, team, rointsPerGame, reboundsPerGame, AssistsPerGame, robberiesByGames, blockingByGames));
+	}
+	
 	
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
