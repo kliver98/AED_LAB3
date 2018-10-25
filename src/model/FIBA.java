@@ -12,7 +12,7 @@ import DataStructures.AVLTreeST;
 import DataStructures.BST;
 import DataStructures.RedBlackBST;
 
-public class FBA {
+public class FIBA {
 	public static String PATHFOLDER = "data/";
 	
 	private RedBlackBST<String, String> playersRedBlackTreeSTL;
@@ -25,7 +25,7 @@ public class FBA {
 	private String folderName;
 	private String pathName;
 	
-	public FBA() {
+	public FIBA() {
 		playersAVlTreeAST = new AVLTreeST<>();
 		playersBSTAST = new BST<>();
 		playersRedBlackTreeSTL = new RedBlackBST<>();

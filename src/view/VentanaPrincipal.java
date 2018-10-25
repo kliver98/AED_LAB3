@@ -11,7 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import model.FBA;
+import model.FIBA;
 
 @SuppressWarnings("serial")
 public class VentanaPrincipal extends JFrame {
@@ -23,11 +23,11 @@ public class VentanaPrincipal extends JFrame {
 	private PanelInformacionJugador pInfJugador;
 	private PanelOpciones pOpciones;
 	private JDialogDatos jDialogDatos;
-	private FBA fBA;
+	private FIBA fBA;
 	
 	public VentanaPrincipal() {
 		
-		fBA = new FBA();
+		fBA = new FIBA();
 		
 		//Pruebas para ver si funcionan, manejar las exceciones
 		
