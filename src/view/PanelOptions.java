@@ -17,7 +17,6 @@ public class PanelOptions extends JPanel implements ActionListener {
 	public static final String SEARCH = "Buscar"; 
 	public static final String LOAD = "Cargar Datos";
 	
-	private JTextField fieldPoints;
 	private JTextField fieldRebounds;
 	private JTextField fieldAssistents;
 	private JTextField fieldRobberies;
@@ -34,7 +33,6 @@ public class PanelOptions extends JPanel implements ActionListener {
 	}
 	
 	public void LoadPanel() {
-		fieldPoints = new JTextField();
 		fieldRebounds = new JTextField();
 		fieldAssistents = new JTextField();
 		fieldRobberies = new JTextField();
@@ -44,13 +42,10 @@ public class PanelOptions extends JPanel implements ActionListener {
 		buttonSearch.addActionListener(this);
 		buttonLoad.addActionListener(this);
 		jDialogLoadFile = new JDialogLoadFile();
-		TextPrompt tp1 = new TextPrompt("Points",fieldPoints);
 		TextPrompt tp2 = new TextPrompt("Rebounds",fieldRebounds);
 		TextPrompt tp3 = new TextPrompt("Assistents",fieldAssistents);
 		TextPrompt tp4 = new TextPrompt("Robberies",fieldRobberies);
 		TextPrompt tp5 = new TextPrompt("Blocking",fieldBlocking);
-		tp1.changeAlpha(0.75f);
-	    tp1.changeStyle(Font.PLAIN);
 	    tp2.changeAlpha(0.75f);
 	    tp2.changeStyle(Font.PLAIN);
 	    tp3.changeAlpha(0.75f);
@@ -59,11 +54,10 @@ public class PanelOptions extends JPanel implements ActionListener {
 	    tp4.changeStyle(Font.PLAIN);
 	    tp5.changeAlpha(0.75f);
 	    tp5.changeStyle(Font.PLAIN);
-	    JLabel principal = new JLabel("*Solo se permite Search por un (1) field y recuerde, solo números.*");
+	    JLabel principal = new JLabel("*Solo se permite buscar por un (1) campo y recuerde, solo números.*");
 	    add(principal);
 	    principal.setHorizontalAlignment(SwingConstants.CENTER);
-	    JPanel aux = new JPanel(new GridLayout(1,7));
-	    aux.add(fieldPoints);
+	    JPanel aux = new JPanel(new GridLayout(1,6));
 	    aux.add(fieldRebounds);
 	    aux.add(fieldAssistents);
 	    aux.add(fieldRobberies);
@@ -74,12 +68,11 @@ public class PanelOptions extends JPanel implements ActionListener {
 	}
 	
 	public boolean onlyOnePutted() {
-		boolean rst = (!fieldPoints.getText().isEmpty() && fieldRebounds.getText().isEmpty() && fieldAssistents.getText().isEmpty() && fieldRobberies.getText().isEmpty() && fieldBlocking.getText().isEmpty());
-		boolean rst2 = (fieldPoints.getText().isEmpty() && !fieldRebounds.getText().isEmpty() && fieldAssistents.getText().isEmpty() && fieldRobberies.getText().isEmpty() && fieldBlocking.getText().isEmpty());
-		boolean rst3 = (fieldPoints.getText().isEmpty() && fieldRebounds.getText().isEmpty() && !fieldAssistents.getText().isEmpty() && fieldRobberies.getText().isEmpty() && fieldBlocking.getText().isEmpty());
-		boolean rst4 = (fieldPoints.getText().isEmpty() && fieldRebounds.getText().isEmpty() && fieldAssistents.getText().isEmpty() && !fieldRobberies.getText().isEmpty() && fieldBlocking.getText().isEmpty());
-		boolean rst5 = (fieldPoints.getText().isEmpty() && fieldRebounds.getText().isEmpty() && fieldAssistents.getText().isEmpty() && fieldRobberies.getText().isEmpty() && !fieldBlocking.getText().isEmpty());
-		return rst || rst2 || rst3 || rst4 || rst5;
+		boolean rst2 = (!fieldRebounds.getText().isEmpty() && fieldAssistents.getText().isEmpty() && fieldRobberies.getText().isEmpty() && fieldBlocking.getText().isEmpty());
+		boolean rst3 = (fieldRebounds.getText().isEmpty() && !fieldAssistents.getText().isEmpty() && fieldRobberies.getText().isEmpty() && fieldBlocking.getText().isEmpty());
+		boolean rst4 = (fieldRebounds.getText().isEmpty() && fieldAssistents.getText().isEmpty() && !fieldRobberies.getText().isEmpty() && fieldBlocking.getText().isEmpty());
+		boolean rst5 = (fieldRebounds.getText().isEmpty() && fieldAssistents.getText().isEmpty() && fieldRobberies.getText().isEmpty() && !fieldBlocking.getText().isEmpty());
+		return rst2 || rst3 || rst4 || rst5;
 	}
 
 	@Override
@@ -97,9 +90,6 @@ public class PanelOptions extends JPanel implements ActionListener {
 				} else if (!fieldRobberies.getText().isEmpty()) {
 					val = Double.parseDouble(fieldRobberies.getText().trim());
 					mainWindow.playerWithSTLGreaterBSTTree(val);
-				} else if (!fieldPoints.getText().isEmpty()) {
-					val = Double.parseDouble(fieldPoints.getText().trim());
-					//Falta!!
 				} else { //It's rebounds
 					val = Double.parseDouble(fieldRebounds.getText().trim());
 					mainWindow.playerWithTRBGreaterAVLTree(val);

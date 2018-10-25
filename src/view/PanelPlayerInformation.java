@@ -40,7 +40,6 @@ public class PanelPlayerInformation extends JPanel implements ListSelectionListe
 		players.setModel(dlm);
 		if (ps.size()>0)
 			updateFieldsPlayerInformation(ps.get(0));
-		System.out.println("Done "+pls.size());
 	}
 	
 	public void updateFieldsPlayerInformation(Player p) {
