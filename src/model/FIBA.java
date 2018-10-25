@@ -1,29 +1,21 @@
 package model;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.FileAlreadyExistsException;
 import java.util.ArrayList;
 
-import DataStructures.AVLTreeST;
-import DataStructures.BST;
-import DataStructures.RedBlackBST;
-import nodeTrees.NodeAVLBST;
-import nodeTrees.NodeBST;
-import nodeTrees.NodeRedBlackBST;
+import DataStructures.*;
+import nodeTrees.*;
 
 public class FIBA {
 	public static String PATHFOLDER = "data/";
+	public static String PATHFOLDERTEMP = "data/dataPlayerTemp/";
 	
 	private RedBlackBST<Double, String> playersRedBlackTreeSTL;
 	private BST<Double, String> playersBSTSTL;
 	private AVLTreeST<Double, String> playersAVlTreeAST;
 	private BST<Double, String> playersBSTAST;
-	private AVLTreeST<Double, String> playersAVlTreeDRB;
+	private AVLTreeST<Double, String> playersAVlTreeTRB;
 	private RedBlackBST<Double, String> playersRedBlackTreeBLK;
 	
 	private String folderName;
@@ -34,7 +26,7 @@ public class FIBA {
 		playersBSTAST = new BST<>();
 		playersRedBlackTreeSTL = new RedBlackBST<>();
 		playersBSTSTL = new BST<>();
-		playersAVlTreeDRB = new AVLTreeST<>();
+		playersAVlTreeTRB = new AVLTreeST<>();
 		playersRedBlackTreeBLK = new RedBlackBST<>();
 	}
 	
@@ -224,11 +216,11 @@ public class FIBA {
 	 * @return list
 	 * @throws IOException 
 	 */
-	public ArrayList<Player> playerWithDRBGreaterAVLTree(double drb) throws IOException{
+	public ArrayList<Player> playerWithTRBGreaterAVLTree(double TRB) throws IOException{
 		ArrayList<Player> players = new ArrayList<>();
-		Double astD = drb;
+		Double astD = TRB;
 		
-		NodeAVLBST<Double, String> x = playersAVlTreeDRB.getRoot();
+		NodeAVLBST<Double, String> x = playersAVlTreeTRB.getRoot();
 		
 		while (x != null) {
 			int cmp = astD.compareTo(x.getKey());
@@ -313,14 +305,14 @@ public class FIBA {
 		createTreeAST();
 		createTreeBLK();
 		createTreeSTL();
-		createTreeDRB();
+		createTreeTRB();
 	}
 	
 	public void initialData() throws IOException {
 		createTreeAST();
 		createTreeBLK();
 		createTreeSTL();
-		createTreeDRB();
+		createTreeTRB();
 	}
 	
 	public void loadData(String path) throws IOException {
@@ -389,16 +381,16 @@ public class FIBA {
 		}
 	}
 	
-	//Crea arbol avl por rebotes (DRB)
-	public void createTreeDRB() throws IOException {
+	//Crea arbol avl por rebotes (TRB)
+	public void createTreeTRB() throws IOException {
 		File folder = new File(PATHFOLDER+folderName);
 		if (folder.exists()) {
 			File arr[] = folder.listFiles();
 			for (int i = 0; i < arr.length; i++) {
 				BufferedReader in = new BufferedReader(new FileReader(arr[i]));
 				String line = in.readLine().split(",")[12];
-				double drb = Double.parseDouble(line);
-				playersAVlTreeDRB.put(drb, arr[i].getPath());
+				double TRB = Double.parseDouble(line);
+				playersAVlTreeTRB.put(TRB, arr[i].getPath());
 				in.close();
 			}
 		}
@@ -417,6 +409,25 @@ public class FIBA {
 				in.close();
 			}
 		}
+	}
+	
+	public void addPlayer(String name, int age, String team, double pointsPerGame, double reboundsPerGame, double assistsPerGame,
+			double robberiesByGames, double blockingByGames) throws IOException {
+		File folder = new File(PATHFOLDERTEMP);
+		File arr[] = folder.listFiles();
+		int tam = arr.length;
+		File file = new File(PATHFOLDERTEMP+"Jugador"+(tam+1)+".bin");
+		BufferedWriter out = new BufferedWriter(new FileWriter(file));
+		String line = ","+team+","+name+","+age+",,,"+pointsPerGame+",,,,,,"+reboundsPerGame+","+assistsPerGame+","+robberiesByGames+","+blockingByGames+",,,,";
+		out.write(line);
+		out.close();
+		playersRedBlackTreeSTL.put(robberiesByGames, file.getPath());;
+		playersBSTSTL.put(robberiesByGames, file.getPath());;
+		playersAVlTreeAST.put(assistsPerGame, file.getPath());;
+		playersBSTAST.put(assistsPerGame, file.getPath());;
+		playersAVlTreeTRB.put(reboundsPerGame, file.getPath());;
+		playersRedBlackTreeBLK.put(blockingByGames, file.getPath());;
+		
 	}
 
 	public RedBlackBST<Double, String> getPlayersRedBlackTreeSTL() {
@@ -451,12 +462,12 @@ public class FIBA {
 		this.playersBSTAST = playersBSTAST;
 	}
 
-	public AVLTreeST<Double, String> getPlayersAVlTreeDRB() {
-		return playersAVlTreeDRB;
+	public AVLTreeST<Double, String> getPlayersAVlTreeTRB() {
+		return playersAVlTreeTRB;
 	}
 
-	public void setPlayersAVlTreeDRB(AVLTreeST<Double, String> playersAVlTreeDRB) {
-		this.playersAVlTreeDRB = playersAVlTreeDRB;
+	public void setPlayersAVlTreeTRB(AVLTreeST<Double, String> playersAVlTreeTRB) {
+		this.playersAVlTreeTRB = playersAVlTreeTRB;
 	}
 
 	public RedBlackBST<Double, String> getPlayersRedBlackTreeBLK() {

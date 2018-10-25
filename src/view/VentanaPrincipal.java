@@ -2,16 +2,11 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Toolkit;
 import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
 import java.util.ArrayList;
-
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-
 import model.FIBA;
 import model.Player;
 
@@ -33,19 +28,25 @@ public class VentanaPrincipal extends JFrame {
 		
 		//Pruebas para ver si funcionan, manejar las exceciones
 		
-		try {
-			fBA.initialData("data/NBASeasonData.csv");
-		} catch (FileAlreadyExistsException e) {
-			e.printStackTrace();
-			//si el archivo se encuentra solo se crean los arboles
-			try {
-				fBA.initialData();
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+//		try {
+//			fBA.initialData("data/NBASeasonData.csv");
+//		} catch (FileAlreadyExistsException e) {
+//			e.printStackTrace();
+//			//si el archivo se encuentra solo se crean los arboles
+//			try {
+//				fBA.initialData();
+//			} catch (IOException e1) {
+//				e1.printStackTrace();
+//			}
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+		
+//		try {
+//			fBA.addPlayer("joe", 10, "HOLA", 10, 11, 5, 3, 40);
+//		} catch (IOException e1) {
+//			e1.printStackTrace();
+//		}
 		
 		try {
 			ArrayList<Player> players = fBA.playerWithASTGreaterAVLTree(20);
