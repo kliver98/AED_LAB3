@@ -2,22 +2,18 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Toolkit;
 import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
-
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 
 import model.FBA;
 
 @SuppressWarnings("serial")
 public class VentanaPrincipal extends JFrame {
 	
-	public static final int WIDTH = 580;
-	public static final int HEIGHT = 650;
+	public static final int WIDTH = 600;
+	public static final int HEIGHT = 620;
 	public static final String TITLE = "Base de datos de jugadores de baloncesto";
 	
 	private PanelInformacionJugador pInfJugador;
@@ -42,7 +38,7 @@ public class VentanaPrincipal extends JFrame {
 		this.setLayout(new BorderLayout());
 		Dimension dm = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setPreferredSize(new Dimension(WIDTH,HEIGHT));
-		this.setLocation((int)(dm.width/(3.8)),dm.height/15);
+		this.setLocation((int)(dm.width/(3.8)),dm.height/10);
 		this.setTitle(TITLE);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setResizable(false);
