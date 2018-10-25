@@ -429,6 +429,37 @@ public class FIBA {
 		playersRedBlackTreeBLK.put(blockingByGames, file.getPath());;
 		
 	}
+	
+	/**
+	 * Search player with assists in avl Tree.<br>
+	 * @param ast
+	 * @return
+	 * @throws IOException
+	 */
+	
+	public Player getPlayerAVLperAST(double ast) throws IOException {
+		Double temp = ast;
+		
+		File file = new File(playersAVlTreeAST.get(temp));
+		
+		BufferedReader in = new BufferedReader(new FileReader(file));
+		String arr[] = in.readLine().split(",");
+		
+		String name = arr[2];
+		int age = Integer.parseInt(arr[3]);
+		String team = arr[1];
+		double pointsPerGame = Double.parseDouble(arr[6]);
+		double reboundsPerGame = Double.parseDouble(arr[12]);
+		double assistsPerGame = Double.parseDouble(arr[13]);
+		double robberiesByGames = Double.parseDouble(arr[14]);
+		double blockingByGames = Double.parseDouble(arr[15]);
+		
+		Player temP = new Player(name, age, team, pointsPerGame, reboundsPerGame, assistsPerGame, robberiesByGames, blockingByGames);
+		
+		in.close();
+		
+		return temP;
+	}
 
 	public RedBlackBST<Double, String> getPlayersRedBlackTreeSTL() {
 		return playersRedBlackTreeSTL;
