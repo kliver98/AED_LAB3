@@ -28,12 +28,7 @@ class RedBlackTreeTest extends TestCase {
 			assertTrue(resultExpected  == result);
 			
 	}
-	
-//	@Test 
-//	public void insertTestTwo() {
-//		stageOne();
-//		
-//	}
+
 	
 	@Test
 	public void deleteTest() {
@@ -61,7 +56,7 @@ class RedBlackTreeTest extends TestCase {
 		Player toAdd = new Player("z", 2,"x", 1,2,3,4,5);
 		redBlackTree.put(toAdd.getName(), toAdd);
 		Player playerExpected = toAdd;
-		Player playerResult = redBlackTree.get("c");
+		Player playerResult = redBlackTree.get("z");
 		assertTrue(playerExpected == playerResult);
 		
 	}
