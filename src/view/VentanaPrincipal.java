@@ -4,17 +4,10 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.IOException;
-import java.nio.file.FileAlreadyExistsException;
-<<<<<<< HEAD
 import javax.swing.JFrame;
-
-import model.FBA;
-=======
 import java.util.ArrayList;
-import javax.swing.JFrame;
 import model.FIBA;
 import model.Player;
->>>>>>> f9a2cc19693df67129c299c6bda557cdb3372732
 
 @SuppressWarnings("serial")
 public class VentanaPrincipal extends JFrame {
