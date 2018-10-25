@@ -5,7 +5,7 @@ import interfaces.*;
 
 public class BST<K extends Comparable<K>, V> implements IBST<K, V> {
 	
-	protected NodeBST<K, V> root;
+	private NodeBST<K, V> root;
 	
 	public BST() {
 	}
@@ -69,11 +69,25 @@ public class BST<K extends Comparable<K>, V> implements IBST<K, V> {
     }
     
     public void deleteMin() {
-        root = root.deleteMin();
+        root = deleteMin(root);
+    }
+	
+    private NodeBST<K, V> deleteMin(NodeBST<K, V> x) {
+        if (x.getLeftChild() == null) 
+        	return x.getRightChild();
+        x.setLeftChild(deleteMin(x.getLeftChild()));
+        return x;
     }
     
     public void deleteMax() {
-        root = root.deleteMax();
+        root = deleteMax(root);
+    }
+    
+    private NodeBST<K, V> deleteMax(NodeBST<K, V> x) {
+        if (x.getRightChild() == null) 
+        	return x.getLeftChild();
+        x.setRightChild(deleteMin(x.getRightChild()));
+        return x;
     }
     
     public void delete(K key) {
@@ -97,30 +111,13 @@ public class BST<K extends Comparable<K>, V> implements IBST<K, V> {
             	return x.getRightChild();
             
             NodeBST<K, V> t = x;
-            x = min(t.getRightChild());
-//            x.setRightChild(deleteMin(t.getRightChild()));
-            x.setRightChild(t.getRightChild().deleteMin());
+            x = t.getRightChild().min();
+            x.setRightChild(deleteMin(t.getRightChild()));
             x.setLeftChild(t.getLeftChild());
         } 
         return x;
     }
     
-    public K min() {
-        return min(root).getKey();
-    } 
-
-    private NodeBST<K, V> min(NodeBST<K, V> x) { 
-    	return x.min();
-    } 
-   
-    public K max() {
-        return max(root).getKey();
-    } 
-
-    private NodeBST<K, V> max(NodeBST<K, V> x) {
-    	return x.max();
-    } 
-	
 	public NodeBST<K, V> searchNode(K key){
 		NodeBST<K, V> rst = null;
 		

@@ -174,4 +174,12 @@ public class AVLTreeST<K extends Comparable<K>, V> extends BST<K, V> {
         
         return isAVL(x.getLeftChild()) && isAVL(x.getRightChild());
     }
+
+	public NodeAVLBST<K, V> getRoot() {
+		return root;
+	}
+
+	public void setRoot(NodeAVLBST<K, V> root) {
+		this.root = root;
+	}
 }

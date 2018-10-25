@@ -6,12 +6,14 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import model.FBA;
+import model.FIBA;
+import model.Player;
 
 @SuppressWarnings("serial")
 public class VentanaPrincipal extends JFrame {
@@ -23,11 +25,11 @@ public class VentanaPrincipal extends JFrame {
 	private PanelInformacionJugador pInfJugador;
 	private PanelOpciones pOpciones;
 	private JDialogDatos jDialogDatos;
-	private FBA fBA;
+	private FIBA fBA;
 	
 	public VentanaPrincipal() {
 		
-		fBA = new FBA();
+		fBA = new FIBA();
 		
 		//Pruebas para ver si funcionan, manejar las exceciones
 		
@@ -35,7 +37,23 @@ public class VentanaPrincipal extends JFrame {
 			fBA.initialData("data/NBASeasonData.csv");
 		} catch (FileAlreadyExistsException e) {
 			e.printStackTrace();
+			//si el archivo se encuentra solo se crean los arboles
+			try {
+				fBA.initialData();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			ArrayList<Player> players = fBA.playerWithASTGreaterAVLTree(20);
+			for (int i = 0; i < players.size(); i++) {
+				System.out.println(players.get(i).toString());
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
