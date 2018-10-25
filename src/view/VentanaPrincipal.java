@@ -5,9 +5,16 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
+<<<<<<< HEAD
 import javax.swing.JFrame;
 
 import model.FBA;
+=======
+import java.util.ArrayList;
+import javax.swing.JFrame;
+import model.FIBA;
+import model.Player;
+>>>>>>> f9a2cc19693df67129c299c6bda557cdb3372732
 
 @SuppressWarnings("serial")
 public class VentanaPrincipal extends JFrame {
@@ -19,19 +26,41 @@ public class VentanaPrincipal extends JFrame {
 	private PanelInformacionJugador pInfJugador;
 	private PanelOpciones pOpciones;
 	private JDialogDatos jDialogDatos;
-	private FBA fBA;
+	private FIBA fBA;
 	
 	public VentanaPrincipal() {
 		
-		fBA = new FBA();
+		fBA = new FIBA();
 		
 		//Pruebas para ver si funcionan, manejar las exceciones
 		
+//		try {
+//			fBA.initialData("data/NBASeasonData.csv");
+//		} catch (FileAlreadyExistsException e) {
+//			e.printStackTrace();
+//			//si el archivo se encuentra solo se crean los arboles
+//			try {
+//				fBA.initialData();
+//			} catch (IOException e1) {
+//				e1.printStackTrace();
+//			}
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+		
+//		try {
+//			fBA.addPlayer("joe", 10, "HOLA", 10, 11, 5, 3, 40);
+//		} catch (IOException e1) {
+//			e1.printStackTrace();
+//		}
+		
 		try {
-			fBA.initialData("data/NBASeasonData.csv");
-		} catch (FileAlreadyExistsException e) {
-			e.printStackTrace();
+			ArrayList<Player> players = fBA.playerWithASTGreaterAVLTree(20);
+			for (int i = 0; i < players.size(); i++) {
+				System.out.println(players.get(i).toString());
+			}
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

@@ -5,11 +5,23 @@ public class Player {
 	private String name;
 	private int age;
 	private String team;
-	private int pointsPerGame;
-	private int reboundsPerGame;
-	private int assistsPerGame;
-	private int robberiesByGames;
-	private int blockingByGames;
+	private double pointsPerGame;
+	private double reboundsPerGame;
+	private double assistsPerGame;
+	private double robberiesByGames;
+	private double blockingByGames;
+
+	public Player(String name, int age, String team, double pointsPerGame, double reboundsPerGame, double assistsPerGame,
+			double robberiesByGames, double blockingByGames) {
+		this.name = name;
+		this.age = age;
+		this.team = team;
+		this.pointsPerGame = pointsPerGame;
+		this.reboundsPerGame = reboundsPerGame;
+		this.assistsPerGame = assistsPerGame;
+		this.robberiesByGames = robberiesByGames;
+		this.blockingByGames = blockingByGames;
+	}
 	
 	public String getName() {
 		return name;
@@ -35,59 +47,50 @@ public class Player {
 		this.team = team;
 	}
 
-	public int getPointsPerGame() {
+	public double getPointsPerGame() {
 		return pointsPerGame;
 	}
 
-	public void setPointsPerGame(int pointsPerGame) {
+	public void setPointsPerGame(double pointsPerGame) {
 		this.pointsPerGame = pointsPerGame;
 	}
 
-	public int getReboundsPerGame() {
+	public double getReboundsPerGame() {
 		return reboundsPerGame;
 	}
 
-	public void setReboundsPerGame(int reboundsPerGame) {
+	public void setReboundsPerGame(double reboundsPerGame) {
 		this.reboundsPerGame = reboundsPerGame;
 	}
 
-	public int getAssistsPerGame() {
+	public double getAssistsPerGame() {
 		return assistsPerGame;
 	}
 
-	public void setAssistsPerGame(int assistsPerGame) {
+	public void setAssistsPerGame(double assistsPerGame) {
 		this.assistsPerGame = assistsPerGame;
 	}
 
-	public int getRobberiesByGames() {
+	public double getRobberiesByGames() {
 		return robberiesByGames;
 	}
 
-	public void setRobberiesByGames(int robberiesByGames) {
+	public void setRobberiesByGames(double robberiesByGames) {
 		this.robberiesByGames = robberiesByGames;
 	}
 
-	public int getBlockingByGames() {
+	public double getBlockingByGames() {
 		return blockingByGames;
 	}
 
-	public void setBlockingByGames(int blockingByGames) {
+	public void setBlockingByGames(double blockingByGames) {
 		this.blockingByGames = blockingByGames;
 	}
 
-	public Player(String name, int age, String team, int pointsPerGame, int reboundsPerGame, int assistsPerGame,
-			int robberiesByGames, int blockingByGames) {
-		super();
-		this.name = name;
-		this.age = age;
-		this.team = team;
-		this.pointsPerGame = pointsPerGame;
-		this.reboundsPerGame = reboundsPerGame;
-		this.assistsPerGame = assistsPerGame;
-		this.robberiesByGames = robberiesByGames;
-		this.blockingByGames = blockingByGames;
+	@Override
+	public String toString() {
+		return "Player [name=" + name + ", age=" + age + ", team=" + team + ", pointsPerGame=" + pointsPerGame
+				+ ", reboundsPerGame=" + reboundsPerGame + ", assistsPerGame=" + assistsPerGame + ", robberiesByGames="
+				+ robberiesByGames + ", blockingByGames=" + blockingByGames + "]";
 	}
-	
-	
-
 }

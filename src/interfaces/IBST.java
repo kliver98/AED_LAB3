@@ -7,8 +7,6 @@ public interface IBST <K extends Comparable<K>,V>{
 	public V get(K key);
 	public void deleteMin();
 	public void deleteMax();
-	public K min();
-	public K max();
 	public int height();
 	public boolean isEmpty();
 	

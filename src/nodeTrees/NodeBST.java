@@ -1,7 +1,5 @@
 package nodeTrees;
 
-import java.util.ArrayList;
-
 public class NodeBST <K, V> {
 	
 	private NodeBST<K, V> father;
@@ -21,13 +19,6 @@ public class NodeBST <K, V> {
 		else 
 			return this;
 	}
-	
-    public NodeBST<K, V> deleteMin() {
-        if (leftChild == null) 
-        	return rightChild;
-        leftChild = leftChild.deleteMin();
-        return this;
-    }
 
 	public NodeBST<K, V> max(){
 		if (rightChild!=null) 
@@ -35,14 +26,6 @@ public class NodeBST <K, V> {
 		else 
 			return this;
 	}
-	
-	public NodeBST<K, V> deleteMax() {
-		if (rightChild == null) 
-			return leftChild;
-		rightChild = rightChild.deleteMin();
-		return this;
-	}
-	
 
 	public NodeBST<K, V> getFather() {
 		return father;
