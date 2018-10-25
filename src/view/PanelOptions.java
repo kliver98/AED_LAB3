@@ -12,7 +12,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
-public class PanelOpciones extends JPanel implements ActionListener {
+public class PanelOptions extends JPanel implements ActionListener {
 	
 	public static final String BUSCAR = "Buscar"; 
 	public static final String CARGAR = "Cargar Datos";
@@ -26,7 +26,7 @@ public class PanelOpciones extends JPanel implements ActionListener {
 	private JButton botonCargar;
 	private JDialogLoadFile jDialogLoadFile;
 	
-	public PanelOpciones() {
+	public PanelOptions() {
 		this.setLayout(new GridLayout(2,1));
 		cargarPanel();
 	}

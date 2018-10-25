@@ -10,18 +10,18 @@ import model.FIBA;
 import model.Player;
 
 @SuppressWarnings("serial")
-public class VentanaPrincipal extends JFrame {
+public class MainWindow extends JFrame {
 	
 	public static final int WIDTH = 600;
 	public static final int HEIGHT = 620;
 	public static final String TITLE = "Base de datos de jugadores de baloncesto";
 	
-	private PanelInformacionJugador pInfJugador;
-	private PanelOpciones pOpciones;
+	private PanelPlayerInformation pInfJugador;
+	private PanelOptions pOpciones;
 	private JDialogDatos jDialogDatos;
 	private FIBA fBA;
 	
-	public VentanaPrincipal() {
+	public MainWindow() {
 		
 		fBA = new FIBA();
 		
@@ -69,21 +69,21 @@ public class VentanaPrincipal extends JFrame {
 	}
 	
 	public void agregarPaneles() {
-		pInfJugador = new PanelInformacionJugador();
-		pOpciones = new PanelOpciones();
+		pInfJugador = new PanelPlayerInformation(this);
+		pOpciones = new PanelOptions();
 		jDialogDatos = new JDialogDatos(this);
 		add(pInfJugador,BorderLayout.CENTER);
 		add(pOpciones,BorderLayout.SOUTH);
 		pack();
 	}
 	
-	public void addPlayer(String name, int age, String team, int rointsPerGame, int reboundsPerGame, int AssistsPerGame, int robberiesByGames, int blockingByGames ) {
+	public void addPlayer(String name, int age, String team, int pointsPerGame, int reboundsPerGame, int assistsPerGame, int robberiesByGames, int blockingByGames ) {
 		
 	}
 	
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
-		VentanaPrincipal main = new VentanaPrincipal();
+		MainWindow main = new MainWindow();
 	}
 
 }
