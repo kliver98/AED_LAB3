@@ -14,19 +14,6 @@ public class NodeBST <K, V> {
 		this.key = key;
 		this.value = value;
 	}
-
-	public ArrayList<NodeBST<K, V>> inOrden() {
-		ArrayList<NodeBST<K, V>> a = new ArrayList<>();
-		return a;
-	}
-
-	public ArrayList<NodeBST<K, V>> postOrden() {
-		return null;
-	}
-
-	public ArrayList<NodeBST<K, V>> preOrden() {
-		return null;
-	}
 	
 	public NodeBST<K, V> min(){
 		if (leftChild!=null) 

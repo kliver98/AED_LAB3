@@ -25,7 +25,7 @@ class RedBlackTreeTest extends TestCase {
 			redBlackTree.put(player.getName(), player);
 			boolean result = false;
 			boolean resultExpected = redBlackTree.isEmpty();
-			assertTrue(resultExpected  = result);
+			assertTrue(resultExpected  == result);
 			
 	}
 	
@@ -47,7 +47,6 @@ class RedBlackTreeTest extends TestCase {
 		Player playerExpected = null;
 		Player playerResult = redBlackTree.get("c");
 		assertTrue(playerResult == playerExpected);
-		
 	}
 	
 	

@@ -28,13 +28,17 @@ public class VentanaPrincipal extends JFrame {
 	public VentanaPrincipal() {
 		
 		fBA = new FBA();
+		
+		//Pruebas para ver si funcionan, manejar las exceciones
+		
 		try {
-			fBA.loadData("data/NBASeasonData.csv");
+			fBA.initialData("data/NBASeasonData.csv");
 		} catch (FileAlreadyExistsException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
 		this.setLayout(new BorderLayout());
 		Dimension dm = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setPreferredSize(new Dimension(WIDTH,HEIGHT));
