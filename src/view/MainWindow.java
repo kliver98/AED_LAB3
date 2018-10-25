@@ -18,7 +18,6 @@ public class MainWindow extends JFrame {
 	
 	private PanelPlayerInformation pInfJugador;
 	private PanelOptions pOpciones;
-	private JDialogDatos jDialogDatos;
 	private FIBA fBA;
 	
 	public MainWindow() {
@@ -69,9 +68,8 @@ public class MainWindow extends JFrame {
 	}
 	
 	public void agregarPaneles() {
-		pInfJugador = new PanelPlayerInformation(this);
-		pOpciones = new PanelOptions();
-		jDialogDatos = new JDialogDatos(this);
+		pInfJugador = new PanelPlayerInformation();
+		pOpciones = new PanelOptions(this);
 		add(pInfJugador,BorderLayout.CENTER);
 		add(pOpciones,BorderLayout.SOUTH);
 		pack();
@@ -79,6 +77,90 @@ public class MainWindow extends JFrame {
 	
 	public void addPlayer(String name, int age, String team, int pointsPerGame, int reboundsPerGame, int assistsPerGame, int robberiesByGames, int blockingByGames ) {
 		
+	}
+	
+	/**
+	 * Put into PanelPlayerInformation a list of players with robberies greater than or equal to one given, red black tree. <br>
+	 * @param ast integer
+	 * @throws IOException 
+	 */
+	public void playerWithSTLGreaterRedBlackTree(double stl) {
+		try {
+			pInfJugador.updateListPlayers(fBA.playerWithSTLGreaterRedBlackTree(stl));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Put into PanelPlayerInformation a list of players with robberies greater than or equal to one given, bst tree. <br>
+	 * @param ast integer
+	 * @throws IOException 
+	 */
+	public void playerWithSTLGreaterBSTTree(double stl) {
+		try {
+			pInfJugador.updateListPlayers(fBA.playerWithSTLGreaterBSTTree(stl));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Put into PanelPlayerInformation a list of players with attendance greater than or equal to one given, AVL tree. <br>
+	 * @param ast integer
+	 * @throws IOException 
+	 */
+	public void playerWithASTGreaterAVLTree(double ast) {
+		try {
+			pInfJugador.updateListPlayers(fBA.playerWithASTGreaterAVLTree(ast));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Put into PanelPlayerInformation a list of players with attendance greater than or equal to one given, bst tree. <br>
+	 * @param ast integer
+	 * @throws IOException 
+	 */
+	public void playerWithASTGreaterBSTTree(double ast) {
+		try {
+			pInfJugador.updateListPlayers(fBA.playerWithASTGreaterBSTTree(ast));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Put into PanelPlayerInformation a list of players with rebounds greater than or equal to one given, AVL tree. <br>
+	 * @param ast integer
+	 * @throws IOException 
+	 */
+	public void playerWithTRBGreaterAVLTree(double TRB) {
+		try {
+			pInfJugador.updateListPlayers(fBA.playerWithTRBGreaterAVLTree(TRB));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Put into PanelPlayerInformation a list of players with blocking greater than or equal to one given, red black tree. <br>
+	 * @param ast integer
+	 * @throws IOException 
+	 */
+	public void playerWithBLKGreaterBSTTree(double blk) {
+		try {
+			pInfJugador.updateListPlayers(fBA.playerWithBLKGreaterBSTTree(blk));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	@SuppressWarnings("unused")

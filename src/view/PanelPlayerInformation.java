@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
@@ -17,25 +18,45 @@ import javax.swing.border.Border;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import model.Player;
+
 @SuppressWarnings("serial")
 public class PanelPlayerInformation extends JPanel implements ListSelectionListener {
 
+	ArrayList<Player> ps;
 	private JList<String> players;
 	private JTextField[] dataPlayer;
-	private MainWindow mainWindow;
 	
-	public PanelPlayerInformation(MainWindow m) {
+	public PanelPlayerInformation() {
 		init();
-		mainWindow = m;
+	}
+	
+	public void updateListPlayers(ArrayList<Player> pls) {
+		ps = pls;
+		DefaultListModel<String> dlm = new DefaultListModel<String>();
+		for (int i = 0; i < ps.size(); i++) {
+			dlm.addElement(ps.get(i).getName());
+		}
+		players.setModel(dlm);
+		if (ps.size()>0)
+			updateFieldsPlayerInformation(ps.get(0));
+		System.out.println("Done "+pls.size());
+	}
+	
+	public void updateFieldsPlayerInformation(Player p) {
+		dataPlayer[0].setText(p.getName());
+		dataPlayer[1].setText(p.getAge()+"");
+		dataPlayer[2].setText(p.getTeam());
+		dataPlayer[3].setText(p.getPointsPerGame()+"");
+		dataPlayer[4].setText(p.getReboundsPerGame()+"");
+		dataPlayer[5].setText(p.getAssistsPerGame()+"");
+		dataPlayer[6].setText(p.getRobberiesByGames()+"");
+		dataPlayer[7].setText(p.getBlockingByGames()+"");
+		this.repaint();
 	}
 	
 	public void init() {
-		DefaultListModel<String> dlm = new DefaultListModel<String>();
-		int val = 50;
-		for (int i = 0; i < val; i++) {
-			dlm.addElement("Prueba "+(i+1));
-		}
-		players = new JList<String>(dlm);
+		players = new JList<String>();
 		players.addListSelectionListener(this);
 		int tb = 0, lr = 10;
 		Border b2 = BorderFactory.createMatteBorder(tb,lr,tb,lr,this.getBackground());
@@ -106,7 +127,7 @@ public class PanelPlayerInformation extends JPanel implements ListSelectionListe
 
 	@Override
 	public void valueChanged(ListSelectionEvent v) {
-		System.out.println(players.getSelectedValue());
+		updateFieldsPlayerInformation(ps.get(players.getSelectedIndex()));
 	}
 	
 }
