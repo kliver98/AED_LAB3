@@ -161,12 +161,20 @@ public class MainWindow extends JFrame {
 		}
 	}
 	
+	public void loadFile(String path) {
+		fBA.initialData(path);
+	}
+	
 	public void addPlayer(String name, int age, String team, double pointsPerGame, double reboundsPerGame, double assistsPerGame,
 			double robberiesByGames, double blockingByGames) {
 		try {
 			fBA.addPlayer(name, age, team, pointsPerGame, reboundsPerGame, assistsPerGame, robberiesByGames, blockingByGames);
 		} catch (IOException e) {
 		}
+	}
+	
+	public void cleanPanelPlayerInformation() {
+		pInfPlayer.cleanFields();
 	}
 	
 	@SuppressWarnings("unused")

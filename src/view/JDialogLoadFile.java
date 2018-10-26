@@ -71,6 +71,7 @@ public class JDialogLoadFile extends JDialog implements ActionListener {
 		int option = file.showOpenDialog(this);
 			if(option == file.APPROVE_OPTION ) {
 				String filePath = file.getSelectedFile().getPath().toString();
+				main.loadFile(filePath);
 			}
 	}
 

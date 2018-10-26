@@ -299,12 +299,21 @@ public class FIBA {
 		return players;
 	}
 	
-	public void initialData(String path) throws IOException {
-		loadData(path);
-		createTreeAST();
-		createTreeBLK();
-		createTreeSTL();
-		createTreeTRB();
+	public void initialData(String path){
+		try {
+			loadData(path);
+			createTreeAST();
+			createTreeBLK();
+			createTreeSTL();
+			createTreeTRB();
+		} catch (IOException e) {
+			try {
+				initialData();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
 	}
 	
 	public void initialData() throws IOException {
@@ -419,14 +428,12 @@ public class FIBA {
 		String line = ","+team+","+name+","+age+",,,"+pointsPerGame+",,,,,,"+reboundsPerGame+","+assistsPerGame+","+robberiesByGames+","+blockingByGames+",,,,";
 		out.write(line);
 		out.close();
-		playersRedBlackTreeSTL.put(robberiesByGames, file.getPath());;
-		playersBSTSTL.put(robberiesByGames, file.getPath());;
-		playersAVlTreeAST.put(assistsPerGame, file.getPath());;
-		playersBSTAST.put(assistsPerGame, file.getPath());;
-		playersAVlTreeTRB.put(reboundsPerGame, file.getPath());;
-		playersRedBlackTreeBLK.put(blockingByGames, file.getPath());;
-		System.out.println(playersRedBlackTreeSTL.height());
-		System.out.println(playersBSTSTL.height());
+		playersRedBlackTreeSTL.put(robberiesByGames, file.getPath());
+		playersBSTSTL.put(robberiesByGames, file.getPath());
+		playersAVlTreeAST.put(assistsPerGame, file.getPath());
+		playersBSTAST.put(assistsPerGame, file.getPath());
+		playersAVlTreeTRB.put(reboundsPerGame, file.getPath());
+		playersRedBlackTreeBLK.put(blockingByGames, file.getPath());
 	}
 	
 	/**
