@@ -427,7 +427,8 @@ public class FIBA {
 		playersBSTAST.put(assistsPerGame, file.getPath());;
 		playersAVlTreeTRB.put(reboundsPerGame, file.getPath());;
 		playersRedBlackTreeBLK.put(blockingByGames, file.getPath());;
-		
+		System.out.println(playersRedBlackTreeSTL.height());
+		System.out.println(playersBSTSTL.height());
 	}
 	
 	/**
