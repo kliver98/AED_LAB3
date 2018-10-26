@@ -39,8 +39,11 @@ public class JDialogAddPlayer extends JDialog implements ActionListener {
 	
 	private JButton btAdd;
 	private JButton btCancel;
-	public JDialogAddPlayer() {
+	private MainWindow main;
+	public JDialogAddPlayer(MainWindow m) {
+		super(m);
 		
+		main = m;
 		
 		setSize(300,350);
 		setResizable(false);
@@ -102,9 +105,10 @@ public class JDialogAddPlayer extends JDialog implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		String comand = e.getActionCommand();
 			if(comand.equals(ADD)) {
-				System.out.println("Player added");
+				main.addPlayer(txtName.getText(),Integer.parseInt(txtAge.getText()),txtTeam.getText(),Double.parseDouble(txtRointsPerGame.getText()),Double.parseDouble(txtReboundsPerGame.getText()),
+						Double.parseDouble(txtAssistsPerGame.getText()),Double.parseDouble(txtRobberiesByGames.getText()),Double.parseDouble(txtBlockingByGames.getText()));
 			}else if (comand.equals(CANCEL)) {
-				System.out.println("Cancel");
+				this.dispose();
 			}
 		
 	}

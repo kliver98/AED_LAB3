@@ -28,8 +28,8 @@ public class PanelOptions extends JPanel implements ActionListener {
 	
 	public PanelOptions(MainWindow m) {
 		this.setLayout(new GridLayout(2,1));
-		LoadPanel();
 		mainWindow = m;
+		LoadPanel();
 	}
 	
 	public void LoadPanel() {
@@ -41,7 +41,8 @@ public class PanelOptions extends JPanel implements ActionListener {
 		buttonLoad = new JButton(LOAD);
 		buttonSearch.addActionListener(this);
 		buttonLoad.addActionListener(this);
-		jDialogLoadFile = new JDialogLoadFile();
+		
+		jDialogLoadFile = new JDialogLoadFile(mainWindow);
 		TextPrompt tp2 = new TextPrompt("Rebounds",fieldRebounds);
 		TextPrompt tp3 = new TextPrompt("Assistents",fieldAssistents);
 		TextPrompt tp4 = new TextPrompt("Robberies",fieldRobberies);

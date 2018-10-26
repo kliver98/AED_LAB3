@@ -23,7 +23,10 @@ import model.Player;
 @SuppressWarnings("serial")
 public class PanelPlayerInformation extends JPanel implements ListSelectionListener {
 
-	ArrayList<Player> ps;
+	/**
+	 * Attribute that represents a list of players already found<b>
+	 */
+	private ArrayList<Player> ps;
 	private JList<String> players;
 	private JTextField[] dataPlayer;
 	
