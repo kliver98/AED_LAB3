@@ -80,8 +80,8 @@ public class PanelOptions extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		String c = e.getActionCommand();
 		if (c.equals(SEARCH)) {
+//			mainWindow.cleanPanelPlayerInformation();
 			if (onlyOnePutted()) {
-				mainWindow.cleanPanelPlayerInformation();
 				double val = 0;
 				if (!fieldAssistents.getText().isEmpty()) {
 					val = Double.parseDouble(fieldAssistents.getText().trim());

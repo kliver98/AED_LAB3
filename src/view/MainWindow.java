@@ -173,9 +173,9 @@ public class MainWindow extends JFrame {
 		}
 	}
 	
-	public void cleanPanelPlayerInformation() {
-		pInfPlayer.cleanFields();
-	}
+//	public void cleanPanelPlayerInformation() {
+//		pInfPlayer.cleanFields();
+//	}
 	
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
