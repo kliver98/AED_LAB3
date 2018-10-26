@@ -177,6 +177,8 @@ public class FIBA {
 		
 		NodeBST<Double, String> x = playersBSTAST.getRoot();
 		
+		int i = 0;
+		
 		while (x != null) {
 			int cmp = astD.compareTo(x.getKey());
 			
@@ -201,10 +203,11 @@ public class FIBA {
 				in.close();
 			}
 			
+			System.out.println(++i);
 			if (cmp < 0) 
-				x = x.getRightChild();
-			else if (cmp > 0) 
 				x = x.getLeftChild();
+			else if (cmp > 0) 
+				x = x.getRightChild();
 		}
 		
 		return players;
@@ -436,7 +439,6 @@ public class FIBA {
 	 * @return
 	 * @throws IOException
 	 */
-	
 	public Player getPlayerAVLperAST(double ast) throws IOException {
 		Double temp = ast;
 		

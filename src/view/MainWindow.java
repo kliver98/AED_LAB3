@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.IOException;
+import java.nio.file.FileAlreadyExistsException;
+
 import javax.swing.JFrame;
 import java.util.ArrayList;
 import model.FIBA;
@@ -46,15 +48,15 @@ public class MainWindow extends JFrame {
 //			e1.printStackTrace();
 //		}
 		
-		try {
-			ArrayList<Player> players = fBA.playerWithASTGreaterAVLTree(20);
-			for (int i = 0; i < players.size(); i++) {
-				System.out.println(players.get(i).toString());
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			ArrayList<Player> players = fBA.playerWithASTGreaterBSTTree(1);
+//			for (int i = 0; i < players.size(); i++) {
+//				System.out.println(players.get(i).toString());
+//			}
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
 		this.setLayout(new BorderLayout());
 		Dimension dm = Toolkit.getDefaultToolkit().getScreenSize();
