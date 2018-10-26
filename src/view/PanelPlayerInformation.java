@@ -46,7 +46,6 @@ public class PanelPlayerInformation extends JPanel implements ListSelectionListe
 	}
 	
 	public void updateFieldsPlayerInformation(Player p) {
-//		System.out.println(p.getAge()+" "+p.getName());
 		dataPlayer[0].setText(p.getName());
 		dataPlayer[1].setText(p.getAge()+"");
 		dataPlayer[2].setText(p.getTeam());
@@ -136,7 +135,8 @@ public class PanelPlayerInformation extends JPanel implements ListSelectionListe
 
 	@Override
 	public void valueChanged(ListSelectionEvent v) {
-		updateFieldsPlayerInformation(ps.get(players.getSelectedIndex()));
+		if (players.getSelectedIndex()>=0)
+			updateFieldsPlayerInformation(ps.get(players.getSelectedIndex()));
 	}
 	
 }

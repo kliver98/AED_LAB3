@@ -1,0 +1,15 @@
+La ventana principal con la que inicia el programa esta dividiva en tres secciones.
+En la parte lateral izquierda esta la información un jugador en especifico que es el que el usuario de la aplicación selecciona.
+En la parte derecha esta una lista que se trae de acuerdo a un (1) rubro estadistica buscado.
+En la parte inferior esta la barra de herramientas donde se puede introducir el valor de un rubro y buscar
+o cargar tanto un arhcivo con datos o agregar de jugador en jugador.
+La carga del archivo, si se va a hacer así, ocurre cada vez que el programa se inicialice. Tarda un poco si son muchos por ser la primera vez.
+Creo que eso es todo lo referente a información de como funciona la aplicación.
+*Toma de 1 a 2 minutos que carguen los datos de prueba que esta en la carpeta data
+Equipo:
+Joe Meneses
+Christian Cobo
+Kliver Girón
+
+Cualquier inquietud, preguntar a cualquiera de los tres.
+Gracias

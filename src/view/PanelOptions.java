@@ -43,10 +43,10 @@ public class PanelOptions extends JPanel implements ActionListener {
 		buttonLoad.addActionListener(this);
 		
 		jDialogLoadFile = new JDialogLoadFile(mainWindow);
-		TextPrompt tp2 = new TextPrompt("Rebounds",fieldRebounds);
-		TextPrompt tp3 = new TextPrompt("Assistents",fieldAssistents);
-		TextPrompt tp4 = new TextPrompt("Robberies",fieldRobberies);
-		TextPrompt tp5 = new TextPrompt("Blocking",fieldBlocking);
+		TextPrompt tp2 = new TextPrompt("Rebotes",fieldRebounds);
+		TextPrompt tp3 = new TextPrompt("Asistencias",fieldAssistents);
+		TextPrompt tp4 = new TextPrompt("Robos",fieldRobberies);
+		TextPrompt tp5 = new TextPrompt("Bloqueos",fieldBlocking);
 	    tp2.changeAlpha(0.75f);
 	    tp2.changeStyle(Font.PLAIN);
 	    tp3.changeAlpha(0.75f);
@@ -55,7 +55,7 @@ public class PanelOptions extends JPanel implements ActionListener {
 	    tp4.changeStyle(Font.PLAIN);
 	    tp5.changeAlpha(0.75f);
 	    tp5.changeStyle(Font.PLAIN);
-	    JLabel principal = new JLabel("*Solo se permite buscar por un (1) campo y recuerde, solo números.*");
+	    JLabel principal = new JLabel("*Solo se permite buscar por un (1) campo y recuerde, solo números positivos.*");
 	    add(principal);
 	    principal.setHorizontalAlignment(SwingConstants.CENTER);
 	    JPanel aux = new JPanel(new GridLayout(1,6));
@@ -80,7 +80,6 @@ public class PanelOptions extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		String c = e.getActionCommand();
 		if (c.equals(SEARCH)) {
-//			mainWindow.cleanPanelPlayerInformation();
 			if (onlyOnePutted()) {
 				double val = 0;
 				if (!fieldAssistents.getText().isEmpty()) {
@@ -96,7 +95,6 @@ public class PanelOptions extends JPanel implements ActionListener {
 					val = Double.parseDouble(fieldRebounds.getText().trim());
 					mainWindow.playerWithTRBGreaterAVLTree(val);
 				}
-				System.out.println("Press");
 			}
 		} else if (c.equals(LOAD)) {
 			jDialogLoadFile.setVisible(true);
