@@ -16,8 +16,8 @@ public class MainWindow extends JFrame {
 	public static final int HEIGHT = 620;
 	public static final String TITLE = "Base de datos de jugadores de baloncesto";
 	
-	private PanelPlayerInformation pInfJugador;
-	private PanelOptions pOpciones;
+	private PanelPlayerInformation pInfPlayer;
+	private PanelOptions pOptions;
 	private FIBA fBA;
 	
 	public MainWindow() {
@@ -63,20 +63,17 @@ public class MainWindow extends JFrame {
 		this.setTitle(TITLE);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setResizable(false);
-		agregarPaneles();
+		addPanels();
 		this.setVisible(true);
 	}
 	
-	public void agregarPaneles() {
-		pInfJugador = new PanelPlayerInformation();
-		pOpciones = new PanelOptions(this);
-		add(pInfJugador,BorderLayout.CENTER);
-		add(pOpciones,BorderLayout.SOUTH);
-		pack();
-	}
-	
-	public void addPlayer(String name, int age, String team, int pointsPerGame, int reboundsPerGame, int assistsPerGame, int robberiesByGames, int blockingByGames ) {
+	public void addPanels() {
+		pInfPlayer = new PanelPlayerInformation();
+		pOptions = new PanelOptions(this);
 		
+		add(pInfPlayer,BorderLayout.CENTER);
+		add(pOptions,BorderLayout.SOUTH);
+		pack();
 	}
 	
 	/**
@@ -86,7 +83,7 @@ public class MainWindow extends JFrame {
 	 */
 	public void playerWithSTLGreaterRedBlackTree(double stl) {
 		try {
-			pInfJugador.updateListPlayers(fBA.playerWithSTLGreaterRedBlackTree(stl));
+			pInfPlayer.updateListPlayers(fBA.playerWithSTLGreaterRedBlackTree(stl));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -100,7 +97,7 @@ public class MainWindow extends JFrame {
 	 */
 	public void playerWithSTLGreaterBSTTree(double stl) {
 		try {
-			pInfJugador.updateListPlayers(fBA.playerWithSTLGreaterBSTTree(stl));
+			pInfPlayer.updateListPlayers(fBA.playerWithSTLGreaterBSTTree(stl));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -114,9 +111,8 @@ public class MainWindow extends JFrame {
 	 */
 	public void playerWithASTGreaterAVLTree(double ast) {
 		try {
-			pInfJugador.updateListPlayers(fBA.playerWithASTGreaterAVLTree(ast));
+			pInfPlayer.updateListPlayers(fBA.playerWithASTGreaterAVLTree(ast));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -128,7 +124,7 @@ public class MainWindow extends JFrame {
 	 */
 	public void playerWithASTGreaterBSTTree(double ast) {
 		try {
-			pInfJugador.updateListPlayers(fBA.playerWithASTGreaterBSTTree(ast));
+			pInfPlayer.updateListPlayers(fBA.playerWithASTGreaterBSTTree(ast));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -142,7 +138,7 @@ public class MainWindow extends JFrame {
 	 */
 	public void playerWithTRBGreaterAVLTree(double TRB) {
 		try {
-			pInfJugador.updateListPlayers(fBA.playerWithTRBGreaterAVLTree(TRB));
+			pInfPlayer.updateListPlayers(fBA.playerWithTRBGreaterAVLTree(TRB));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -156,10 +152,18 @@ public class MainWindow extends JFrame {
 	 */
 	public void playerWithBLKGreaterBSTTree(double blk) {
 		try {
-			pInfJugador.updateListPlayers(fBA.playerWithBLKGreaterBSTTree(blk));
+			pInfPlayer.updateListPlayers(fBA.playerWithBLKGreaterBSTTree(blk));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+	}
+	
+	public void addPlayer(String name, int age, String team, double pointsPerGame, double reboundsPerGame, double assistsPerGame,
+			double robberiesByGames, double blockingByGames) {
+		try {
+			fBA.addPlayer(name, age, team, pointsPerGame, reboundsPerGame, assistsPerGame, robberiesByGames, blockingByGames);
+		} catch (IOException e) {
 		}
 	}
 	
