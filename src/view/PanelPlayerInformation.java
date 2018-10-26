@@ -57,6 +57,12 @@ public class PanelPlayerInformation extends JPanel implements ListSelectionListe
 		this.repaint();
 	}
 	
+	public void cleanFields() {
+		for (int i = 0; i < dataPlayer.length; i++) {
+			dataPlayer[i] = new JTextField();
+		}
+	}
+	
 	public void init() {
 		players = new JList<String>();
 		players.addListSelectionListener(this);
