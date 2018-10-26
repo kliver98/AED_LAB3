@@ -28,19 +28,19 @@ public class MainWindow extends JFrame {
 		
 		//Pruebas para ver si funcionan, manejar las exceciones
 		
-//		try {
-//			fBA.initialData("data/NBASeasonData.csv");
-//		} catch (FileAlreadyExistsException e) {
-//			e.printStackTrace();
-//			//si el archivo se encuentra solo se crean los arboles
-//			try {
-//				fBA.initialData();
-//			} catch (IOException e1) {
-//				e1.printStackTrace();
-//			}
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
+		try {
+			fBA.initialData("data/NBASeasonData.csv");
+		} catch (FileAlreadyExistsException e) {
+			e.printStackTrace();
+			//si el archivo se encuentra solo se crean los arboles
+			try {
+				fBA.initialData();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 //		try {
 //			fBA.addPlayer("joe", 10, "HOLA", 10, 11, 5, 3, 40);
@@ -48,15 +48,15 @@ public class MainWindow extends JFrame {
 //			e1.printStackTrace();
 //		}
 		
-//		try {
-//			ArrayList<Player> players = fBA.playerWithASTGreaterBSTTree(1);
-//			for (int i = 0; i < players.size(); i++) {
-//				System.out.println(players.get(i).toString());
-//			}
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		try {
+			ArrayList<Player> players = fBA.playerWithASTGreaterBSTTree(1);
+			for (int i = 0; i < players.size(); i++) {
+				System.out.println(players.get(i).toString());
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		this.setLayout(new BorderLayout());
 		Dimension dm = Toolkit.getDefaultToolkit().getScreenSize();

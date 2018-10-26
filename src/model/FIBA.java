@@ -19,7 +19,6 @@ public class FIBA {
 	private RedBlackBST<Double, String> playersRedBlackTreeBLK;
 	
 	private String folderName;
-	private String pathName;
 	
 	public FIBA() {
 		playersAVlTreeAST = new AVLTreeST<>();
@@ -66,10 +65,10 @@ public class FIBA {
             	in.close();
 			}
             
-            if (cmp < 0) 
-            	x = x.getRightChild();
-            else if (cmp > 0) 
-            	x = x.getLeftChild();
+			if (cmp < 0) 
+				x = x.getLeftChild();
+			else if (cmp >= 0) 
+				x = x.getRightChild();
         }
 		
 		return players;
@@ -112,9 +111,9 @@ public class FIBA {
 			}
 			
 			if (cmp < 0) 
-				x = x.getRightChild();
-			else if (cmp > 0) 
 				x = x.getLeftChild();
+			else if (cmp >= 0) 
+				x = x.getRightChild();
 		}
 		
 		return players;
@@ -157,9 +156,9 @@ public class FIBA {
 			}
 			
 			if (cmp < 0) 
-				x = x.getRightChild();
-			else if (cmp > 0) 
 				x = x.getLeftChild();
+			else if (cmp >= 0) 
+				x = x.getRightChild();
 		}
 		
 		return players;
@@ -176,8 +175,6 @@ public class FIBA {
 		Double astD = ast;
 		
 		NodeBST<Double, String> x = playersBSTAST.getRoot();
-		
-		int i = 0;
 		
 		while (x != null) {
 			int cmp = astD.compareTo(x.getKey());
@@ -203,10 +200,9 @@ public class FIBA {
 				in.close();
 			}
 			
-			System.out.println(++i);
 			if (cmp < 0) 
 				x = x.getLeftChild();
-			else if (cmp > 0) 
+			else if (cmp >= 0) 
 				x = x.getRightChild();
 		}
 		
@@ -250,9 +246,9 @@ public class FIBA {
 			}
 			
 			if (cmp < 0) 
-				x = x.getRightChild();
-			else if (cmp > 0) 
 				x = x.getLeftChild();
+			else if (cmp >= 0) 
+				x = x.getRightChild();
 		}
 		
 		return players;
@@ -295,9 +291,9 @@ public class FIBA {
 			}
 			
 			if (cmp < 0) 
-				x = x.getRightChild();
-			else if (cmp > 0) 
 				x = x.getLeftChild();
+			else if (cmp >= 0) 
+				x = x.getRightChild();
 		}
 		
 		return players;
@@ -323,7 +319,6 @@ public class FIBA {
 		File folder = new File("data\\temp"+file.getName());
 		
 		folderName = folder.getName();
-		pathName = path;
 		
 		if (!folder.exists()) {
 			folder.mkdirs();
@@ -444,6 +439,156 @@ public class FIBA {
 		Double temp = ast;
 		
 		File file = new File(playersAVlTreeAST.get(temp));
+		
+		BufferedReader in = new BufferedReader(new FileReader(file));
+		String arr[] = in.readLine().split(",");
+		
+		String name = arr[2];
+		int age = Integer.parseInt(arr[3]);
+		String team = arr[1];
+		double pointsPerGame = Double.parseDouble(arr[6]);
+		double reboundsPerGame = Double.parseDouble(arr[12]);
+		double assistsPerGame = Double.parseDouble(arr[13]);
+		double robberiesByGames = Double.parseDouble(arr[14]);
+		double blockingByGames = Double.parseDouble(arr[15]);
+		
+		Player temP = new Player(name, age, team, pointsPerGame, reboundsPerGame, assistsPerGame, robberiesByGames, blockingByGames);
+		
+		in.close();
+		
+		return temP;
+	}
+	
+	/**
+	 * Search player with assists in bst Tree.<br>
+	 * @param ast
+	 * @return
+	 * @throws IOException
+	 */
+	public Player getPlayerBSTperAST(double ast) throws IOException {
+		Double temp = ast;
+		
+		File file = new File(playersBSTAST.get(temp));
+		
+		BufferedReader in = new BufferedReader(new FileReader(file));
+		String arr[] = in.readLine().split(",");
+		
+		String name = arr[2];
+		int age = Integer.parseInt(arr[3]);
+		String team = arr[1];
+		double pointsPerGame = Double.parseDouble(arr[6]);
+		double reboundsPerGame = Double.parseDouble(arr[12]);
+		double assistsPerGame = Double.parseDouble(arr[13]);
+		double robberiesByGames = Double.parseDouble(arr[14]);
+		double blockingByGames = Double.parseDouble(arr[15]);
+		
+		Player temP = new Player(name, age, team, pointsPerGame, reboundsPerGame, assistsPerGame, robberiesByGames, blockingByGames);
+		
+		in.close();
+		
+		return temP;
+	}
+	
+	/**
+	 * Search player with robberies in red black Tree.<br>
+	 * @param ast
+	 * @return
+	 * @throws IOException
+	 */
+	public Player getPlayerREDBLACKperAST(double stl) throws IOException {
+		Double temp = stl;
+		
+		File file = new File(playersRedBlackTreeSTL.get(temp));
+		
+		BufferedReader in = new BufferedReader(new FileReader(file));
+		String arr[] = in.readLine().split(",");
+		
+		String name = arr[2];
+		int age = Integer.parseInt(arr[3]);
+		String team = arr[1];
+		double pointsPerGame = Double.parseDouble(arr[6]);
+		double reboundsPerGame = Double.parseDouble(arr[12]);
+		double assistsPerGame = Double.parseDouble(arr[13]);
+		double robberiesByGames = Double.parseDouble(arr[14]);
+		double blockingByGames = Double.parseDouble(arr[15]);
+		
+		Player temP = new Player(name, age, team, pointsPerGame, reboundsPerGame, assistsPerGame, robberiesByGames, blockingByGames);
+		
+		in.close();
+		
+		return temP;
+	}
+	
+	/**
+	 * Search player with robberies in bst Tree.<br>
+	 * @param ast
+	 * @return
+	 * @throws IOException
+	 */
+	public Player getPlayerBSTperSTL(double stl) throws IOException {
+		Double temp = stl;
+		
+		File file = new File(playersBSTSTL.get(temp));
+		
+		BufferedReader in = new BufferedReader(new FileReader(file));
+		String arr[] = in.readLine().split(",");
+		
+		String name = arr[2];
+		int age = Integer.parseInt(arr[3]);
+		String team = arr[1];
+		double pointsPerGame = Double.parseDouble(arr[6]);
+		double reboundsPerGame = Double.parseDouble(arr[12]);
+		double assistsPerGame = Double.parseDouble(arr[13]);
+		double robberiesByGames = Double.parseDouble(arr[14]);
+		double blockingByGames = Double.parseDouble(arr[15]);
+		
+		Player temP = new Player(name, age, team, pointsPerGame, reboundsPerGame, assistsPerGame, robberiesByGames, blockingByGames);
+		
+		in.close();
+		
+		return temP;
+	}
+	
+	/**
+	 * Search player with rebounds in red black Tree.<br>
+	 * @param ast
+	 * @return
+	 * @throws IOException
+	 */
+	public Player getPlayerAVLperTRB(double trb) throws IOException {
+		Double temp = trb;
+		
+		File file = new File(playersAVlTreeTRB.get(temp));
+		
+		BufferedReader in = new BufferedReader(new FileReader(file));
+		String arr[] = in.readLine().split(",");
+		
+		String name = arr[2];
+		int age = Integer.parseInt(arr[3]);
+		String team = arr[1];
+		double pointsPerGame = Double.parseDouble(arr[6]);
+		double reboundsPerGame = Double.parseDouble(arr[12]);
+		double assistsPerGame = Double.parseDouble(arr[13]);
+		double robberiesByGames = Double.parseDouble(arr[14]);
+		double blockingByGames = Double.parseDouble(arr[15]);
+		
+		Player temP = new Player(name, age, team, pointsPerGame, reboundsPerGame, assistsPerGame, robberiesByGames, blockingByGames);
+		
+		in.close();
+		
+		return temP;
+	}
+	
+	/**
+	 * Search player with blocking in red black Tree.<br>
+	 * @param ast
+	 * @return
+	 * @throws IOException
+	 */
+	public Player getPlayerREDBLACKperBLK(double blk) throws IOException {
+		Double temp = blk;
+		
+		File file = new File(playersRedBlackTreeBLK.get(temp));
 		
 		BufferedReader in = new BufferedReader(new FileReader(file));
 		String arr[] = in.readLine().split(",");
